@@ -13,7 +13,9 @@ import {
   CreditCard,
   ExternalLink,
   FolderKanban,
+  IndianRupee,
   LayoutDashboard,
+  LogIn,
   LogOut,
   Menu,
   Search,
@@ -24,8 +26,6 @@ import {
   Users,
   UtensilsCrossed,
   X,
-  IndianRupee,
-  LogIn,
 } from 'lucide-react';
 import { usePlatform } from '../context/PlatformContext';
 
@@ -51,23 +51,26 @@ export const AdminLayout: React.FC = () => {
 
   if (!isAdminAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-6">
-        <div className="max-w-md w-full bg-white border border-slate-200 rounded-xl p-8 text-center">
-          <h2 className="text-xl font-bold text-[#172D4D]">Admin Session Required</h2>
+      <div className="min-h-screen bg-[#0B1628] flex items-center justify-center p-4 sm:p-6">
+        <div className="max-w-md w-full bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 text-center">
+          <p className="text-xs font-semibold text-[#C89B54] uppercase tracking-wider">
+            Kaveri Palms Console
+          </p>
+          <h2 className="type-h2 font-bold text-slate-900 mt-1">Admin Session Required</h2>
           <p className="text-sm text-slate-600 mt-2">
             Sign in with the unified Super Admin account to manage Turf, Resort, and Restaurant operations.
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <Link
               to="/admin/login"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#172D4D] text-white text-sm font-semibold rounded-lg hover:bg-[#1e3a63] transition-colors"
+              className="inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2.5 bg-[#0B1628] text-white text-sm font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
             >
               <LogIn className="w-4 h-4" />
               <span>Go to Admin Login</span>
             </Link>
             <Link
               to="/"
-              className="text-xs font-medium text-slate-600 hover:text-slate-900"
+              className="inline-flex items-center justify-center min-h-[40px] text-xs font-medium text-slate-600 hover:text-slate-900"
             >
               Return to Customer Website
             </Link>
@@ -83,7 +86,7 @@ export const AdminLayout: React.FC = () => {
     {
       id: 'turf',
       label: 'Turf Management',
-      accentColor: 'text-blue-600',
+      accentColor: 'text-blue-400',
       items: [
         { to: '/admin/turf', label: 'Turf Overview', icon: Trophy },
         { to: '/admin/turf/bookings', label: 'Bookings', icon: ClipboardList },
@@ -94,7 +97,7 @@ export const AdminLayout: React.FC = () => {
     {
       id: 'resort',
       label: 'Resort Management',
-      accentColor: 'text-emerald-600',
+      accentColor: 'text-emerald-400',
       items: [
         { to: '/admin/resort', label: 'Resort Overview', icon: BedDouble },
         { to: '/admin/resort/bookings', label: 'Room Bookings', icon: ClipboardList },
@@ -107,7 +110,7 @@ export const AdminLayout: React.FC = () => {
     {
       id: 'restaurant',
       label: 'Restaurant Management',
-      accentColor: 'text-orange-600',
+      accentColor: 'text-orange-400',
       items: [
         { to: '/admin/restaurant', label: 'Restaurant Overview', icon: UtensilsCrossed },
         { to: '/admin/restaurant/orders', label: 'Food Orders', icon: ClipboardList },
@@ -121,7 +124,7 @@ export const AdminLayout: React.FC = () => {
     {
       id: 'common',
       label: 'Common Management',
-      accentColor: 'text-slate-700',
+      accentColor: 'text-[#C89B54]',
       items: [
         { to: '/admin/bookings', label: 'All Bookings', icon: ClipboardList },
         { to: '/admin/customers', label: 'Customers', icon: Users },
@@ -152,15 +155,18 @@ export const AdminLayout: React.FC = () => {
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-white border-r border-slate-200">
-      <div className="h-16 px-5 flex items-center justify-between border-b border-slate-200 shrink-0">
-        <Link to="/admin/dashboard" className="font-display font-bold text-base text-[#172D4D] truncate">
+    <div className="flex flex-col h-full bg-[#0B1628] text-slate-200 border-r border-white/10">
+      <div className="h-16 px-5 flex items-center justify-between border-b border-white/10 shrink-0">
+        <Link
+          to="/admin/dashboard"
+          className="font-display font-bold text-base text-white truncate tracking-tight"
+        >
           {settings.businessName}
         </Link>
         <button
           type="button"
           onClick={() => setSidebarOpen(false)}
-          className="lg:hidden p-1.5 text-slate-500 hover:text-slate-900 rounded-md"
+          className="lg:hidden min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-300 hover:text-white rounded-lg hover:bg-white/10"
           aria-label="Close sidebar"
         >
           <X className="w-4 h-4" />
@@ -170,22 +176,22 @@ export const AdminLayout: React.FC = () => {
       <div className="flex-1 overflow-y-auto px-3 py-4 space-y-5">
         <div>
           <p className="px-3 mb-1.5 text-[11px] font-semibold text-slate-400 tracking-wider uppercase">
-            Overview
+            Command
           </p>
           <NavLink
             to="/admin/dashboard"
             end
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
-              `flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              `flex items-center gap-2.5 min-h-[42px] px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? 'bg-[#172D4D] text-white'
-                  : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'bg-[#C89B54] text-[#0B1628] font-semibold'
+                  : 'text-slate-200 hover:bg-white/10 hover:text-white'
               }`
             }
           >
             <LayoutDashboard className="w-4 h-4 shrink-0" />
-            <span>Dashboard</span>
+            <span>Executive Overview</span>
           </NavLink>
         </div>
 
@@ -196,16 +202,13 @@ export const AdminLayout: React.FC = () => {
               <button
                 type="button"
                 onClick={() => toggleGroup(group.id)}
-                className="w-full flex items-center justify-between px-3 py-1.5 text-[11px] font-semibold tracking-wider uppercase text-slate-500 hover:text-slate-900"
+                className="w-full flex items-center justify-between px-3 py-1.5 text-[11px] font-semibold tracking-wider uppercase text-slate-400 hover:text-white transition-colors"
               >
-                <span className="flex items-center gap-2">
-                  <span className={`w-1.5 h-1.5 rounded-xs bg-current ${group.accentColor}`} />
-                  <span>{group.label}</span>
-                </span>
+                <span className="truncate">{group.label}</span>
                 {isOpen ? (
-                  <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 ) : (
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                 )}
               </button>
               {isOpen && (
@@ -223,10 +226,10 @@ export const AdminLayout: React.FC = () => {
                         }
                         onClick={() => setSidebarOpen(false)}
                         className={({ isActive }) =>
-                          `flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
+                          `flex items-center justify-between gap-2 min-h-[40px] px-3 py-2 rounded-lg text-[13px] font-medium transition-colors ${
                             isActive
-                              ? 'bg-slate-100 text-[#172D4D] font-semibold'
-                              : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                              ? 'bg-white/14 text-white font-semibold border border-white/10'
+                              : 'text-slate-300 hover:bg-white/8 hover:text-white'
                           }`
                         }
                       >
@@ -235,7 +238,7 @@ export const AdminLayout: React.FC = () => {
                           <span className="truncate">{item.label}</span>
                         </span>
                         {item.to === '/admin/notifications' && unreadCount > 0 && (
-                          <span className="font-mono-tabular text-[11px] font-semibold text-rose-700">
+                          <span className="font-mono-tabular text-[11px] font-bold text-rose-400">
                             {unreadCount}
                           </span>
                         )}
@@ -249,10 +252,10 @@ export const AdminLayout: React.FC = () => {
         })}
       </div>
 
-      <div className="p-3 border-t border-slate-200 space-y-1.5">
+      <div className="p-3 border-t border-white/10 space-y-1.5">
         <Link
           to="/"
-          className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-100 transition-colors"
+          className="flex items-center justify-between min-h-[40px] px-3 py-2 rounded-lg text-xs font-medium text-slate-200 hover:bg-white/10 hover:text-white transition-colors"
         >
           <span>Customer Website</span>
           <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
@@ -260,7 +263,7 @@ export const AdminLayout: React.FC = () => {
         <button
           type="button"
           onClick={handleLogout}
-          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium text-rose-700 hover:bg-rose-50 transition-colors"
+          className="w-full flex items-center gap-2 min-h-[40px] px-3 py-2 rounded-lg text-xs font-medium text-rose-300 hover:bg-rose-500/15 transition-colors"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>Sign Out</span>
@@ -269,7 +272,6 @@ export const AdminLayout: React.FC = () => {
     </div>
   );
 
-  // Derive breadcrumb from path
   const segments = location.pathname.replace('/admin/', '').split('/').filter(Boolean);
   const breadcrumb = segments.length
     ? segments.map((s) => s.replace(/-/g, ' ')).join(' / ')
@@ -277,16 +279,16 @@ export const AdminLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex">
-      {/* Desktop Fixed Sidebar */}
+      {/* Desktop Persistent Coastal Sidebar */}
       <aside className="hidden lg:block w-64 shrink-0 sticky top-0 h-screen">
         <SidebarContent />
       </aside>
 
-      {/* Mobile Drawer */}
+      {/* Mobile & Tablet Slide-Out Drawer */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-slate-900/40"
+            className="fixed inset-0 bg-[#071120]/60 backdrop-blur-xs"
             onClick={() => setSidebarOpen(false)}
           />
           <div className="relative w-72 max-w-[85vw] h-full z-10">
@@ -297,23 +299,23 @@ export const AdminLayout: React.FC = () => {
 
       {/* Main Content Shell */}
       <div className="flex-1 min-w-0 flex flex-col">
-        <header className="sticky top-0 z-30 h-16 bg-white border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 min-w-0">
+        <header className="sticky top-0 z-30 h-16 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 sm:px-6 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
             <button
               type="button"
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg"
+              className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg"
               aria-label="Open admin menu"
             >
               <Menu className="w-5 h-5" />
             </button>
-            <div className="text-sm font-medium text-slate-500 capitalize truncate">
+            <div className="text-xs sm:text-sm font-medium text-slate-500 capitalize truncate">
               Admin <span className="text-slate-300 mx-1">/</span>{' '}
               <span className="text-slate-900 font-semibold">{breadcrumb}</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <form onSubmit={handleGlobalSearch} className="hidden md:block relative">
               <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
@@ -321,26 +323,26 @@ export const AdminLayout: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search ID, customer..."
-                className="pl-9 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg w-52 focus:outline-none focus:border-[#172D4D] focus:bg-white"
+                className="pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg w-52 focus:outline-none focus:border-[#0B1628] focus:bg-white"
               />
             </form>
 
             <Link
               to="/admin/notifications"
-              className="relative p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
+              className="relative min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
               aria-label="Notifications"
             >
               <Bell className="w-4 h-4" />
               {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 bg-rose-600 text-white text-[10px] font-mono-tabular font-semibold rounded flex items-center justify-center">
+                <span className="absolute top-1 right-1 min-w-[16px] h-4 px-1 bg-rose-600 text-white text-[10px] font-mono-tabular font-semibold rounded flex items-center justify-center">
                   {unreadCount}
                 </span>
               )}
             </Link>
 
-            <div className="hidden sm:flex items-center gap-2 pl-3 border-l border-slate-200">
-              <div className="w-7 h-7 rounded-lg bg-[#172D4D] text-white text-xs font-semibold flex items-center justify-center">
-                SA
+            <div className="hidden sm:flex items-center gap-2.5 pl-3 border-l border-slate-200">
+              <div className="w-8 h-8 rounded-lg bg-[#0B1628] text-[#C89B54] text-xs font-bold flex items-center justify-center">
+                VM
               </div>
               <div className="leading-tight">
                 <div className="text-xs font-semibold text-slate-900">Vigneshwaran M</div>

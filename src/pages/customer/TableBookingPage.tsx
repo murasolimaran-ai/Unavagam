@@ -59,12 +59,12 @@ export const TableBookingPage: React.FC = () => {
   if (confirmed) {
     return (
       <div className="max-w-xl mx-auto px-4 py-12">
-        <div className="bg-white border border-slate-200 rounded-xl p-8">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 text-emerald-700">
-            <CheckCircle2 className="w-7 h-7" />
+            <CheckCircle2 className="w-7 h-7 shrink-0" />
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Table Reservation Confirmed</h1>
-              <p className="text-xs text-slate-500">
+              <h1 className="type-h1 text-[#0B1628]">Table Reservation Confirmed</h1>
+              <p className="text-xs text-slate-500 mt-0.5">
                 Reservation ID: <span className="font-mono-tabular font-semibold">{confirmed.id}</span>
               </p>
             </div>
@@ -92,13 +92,13 @@ export const TableBookingPage: React.FC = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/my-bookings"
-              className="flex-1 text-center px-4 py-2.5 bg-[#172D4D] text-white text-xs font-semibold rounded-lg"
+              className="flex-1 min-h-[44px] inline-flex items-center justify-center px-4 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
             >
               View in My Bookings
             </Link>
             <Link
               to="/restaurant/menu"
-              className="px-4 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg"
+              className="min-h-[44px] inline-flex items-center justify-center px-4 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
             >
               Browse Food Menu
             </Link>
@@ -109,26 +109,26 @@ export const TableBookingPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8">
       <div>
-        <p className="text-xs font-semibold text-orange-700">Kaveri Courtyard Kitchen</p>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C89B54]">Kaveri Courtyard Kitchen</p>
+        <h1 className="type-h1 text-[#0B1628] mt-1">
           Reserve a Dining Table
         </h1>
-        <p className="text-sm text-slate-600 mt-1">
+        <p className="text-sm text-slate-600 mt-1.5">
           Independent table booking with conflict-free time slots. No food pre-order required.
         </p>
       </div>
 
       {errorMsg && (
-        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg flex items-center gap-2 text-xs text-rose-800">
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2 text-xs text-rose-800">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       <form onSubmit={handleConfirm} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1">
@@ -236,7 +236,7 @@ export const TableBookingPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
           <h2 className="text-base font-bold text-slate-900">Step 6: Guest Details</h2>
           <div>
             <label className="block text-xs font-medium text-slate-700 mb-1">Full Name *</label>
@@ -244,7 +244,7 @@ export const TableBookingPage: React.FC = () => {
               type="text"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full min-h-[44px] px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
           <div>
@@ -253,7 +253,7 @@ export const TableBookingPage: React.FC = () => {
               type="tel"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full min-h-[44px] px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
           <div>
@@ -262,7 +262,7 @@ export const TableBookingPage: React.FC = () => {
               type="email"
               value={customerEmail}
               onChange={(e) => setCustomerEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full min-h-[44px] px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
           <div>
@@ -274,7 +274,7 @@ export const TableBookingPage: React.FC = () => {
               value={occasion}
               onChange={(e) => setOccasion(e.target.value)}
               placeholder="Birthday, Team Lunch, Anniversary..."
-              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full min-h-[44px] px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
           <div>
@@ -285,13 +285,13 @@ export const TableBookingPage: React.FC = () => {
               rows={2}
               value={specialRequests}
               onChange={(e) => setSpecialRequests(e.target.value)}
-              className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm"
+              className="w-full px-3 py-2 border border-slate-200 rounded-xl text-sm"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 bg-[#172D4D] hover:bg-[#1e3a63] text-white text-sm font-semibold rounded-lg transition-colors"
+            className="w-full min-h-[48px] py-3 bg-[#0B1628] hover:bg-[#172D4D] text-white text-sm font-semibold rounded-xl transition-colors"
           >
             Confirm Table Reservation
           </button>

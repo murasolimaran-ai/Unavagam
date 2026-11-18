@@ -146,7 +146,7 @@ export const AdminResortRoomsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Room Inventory &amp; Categories
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -154,13 +154,13 @@ export const AdminResortRoomsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl">
             <button
               type="button"
               onClick={() => setTab('rooms')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                tab === 'rooms' ? 'bg-emerald-700 text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                tab === 'rooms' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Individual Rooms ({resortRooms.length})
@@ -168,8 +168,8 @@ export const AdminResortRoomsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setTab('categories')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                tab === 'categories' ? 'bg-emerald-700 text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                tab === 'categories' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Categories ({roomCategories.length})
@@ -178,7 +178,7 @@ export const AdminResortRoomsPage: React.FC = () => {
           <button
             type="button"
             onClick={tab === 'rooms' ? openAddRoom : openAddCat}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#172D4D] text-white text-xs font-semibold rounded-lg hover:bg-[#1e3a63]"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>{tab === 'rooms' ? 'Add Room' : 'Add Category'}</span>
@@ -216,7 +216,7 @@ export const AdminResortRoomsPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -279,7 +279,7 @@ export const AdminResortRoomsPage: React.FC = () => {
             return (
               <div
                 key={cat.id}
-                className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between gap-4"
+                className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between gap-4"
               >
                 <div className="flex items-start gap-4">
                   <img

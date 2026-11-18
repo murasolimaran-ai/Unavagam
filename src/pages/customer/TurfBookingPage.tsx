@@ -141,12 +141,12 @@ export const TurfBookingPage: React.FC = () => {
   if (step === 4 && confirmedBooking) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12">
-        <div className="bg-white border border-slate-200 rounded-xl p-8">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 text-emerald-700">
-            <CheckCircle2 className="w-7 h-7" />
+            <CheckCircle2 className="w-7 h-7 shrink-0" />
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Turf Slot Confirmed</h1>
-              <p className="text-xs text-slate-500">
+              <h1 className="type-h1 text-[#0B1628]">Turf Slot Confirmed</h1>
+              <p className="text-xs text-slate-500 mt-0.5">
                 Booking ID: <span className="font-mono-tabular font-semibold">{confirmedBooking.id}</span>
               </p>
             </div>
@@ -192,13 +192,13 @@ export const TurfBookingPage: React.FC = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/my-bookings"
-              className="flex-1 text-center px-5 py-2.5 bg-[#172D4D] text-white text-xs font-semibold rounded-lg hover:bg-[#1e3a63] transition-colors"
+              className="flex-1 min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
             >
               View in My Bookings
             </Link>
             <Link
               to="/turf"
-              className="px-5 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50 transition-colors"
+              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
             >
               Back to Turf
             </Link>
@@ -209,15 +209,15 @@ export const TurfBookingPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <p className="text-xs font-semibold text-blue-700">{turfConfig.name}</p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-0.5">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C89B54]">{turfConfig.name}</p>
+          <h1 className="type-h1 text-[#0B1628] mt-1">
             Book Your Turf Slot
           </h1>
         </div>
-        <div className="flex items-center gap-2 text-xs font-medium">
+        <div className="flex items-center gap-2 text-xs font-medium overflow-x-auto pb-1">
           {[
             { id: 1, label: '1. Date & Slot' },
             { id: 2, label: '2. Player Details' },
@@ -229,9 +229,9 @@ export const TurfBookingPage: React.FC = () => {
               onClick={() => {
                 if (s.id < step) setStep(s.id);
               }}
-              className={`px-3 py-1.5 rounded-lg border whitespace-nowrap ${
+              className={`min-h-[40px] px-3.5 py-2 rounded-xl border whitespace-nowrap transition-colors ${
                 step === s.id
-                  ? 'bg-blue-600 text-white border-blue-600'
+                  ? 'bg-[#0B1628] text-white border-[#0B1628]'
                   : step > s.id
                   ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
                   : 'bg-white text-slate-500 border-slate-200'
@@ -251,7 +251,7 @@ export const TurfBookingPage: React.FC = () => {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-8 bg-white border border-slate-200 rounded-xl p-6">
+        <div className="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
           {step === 1 && (
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -265,7 +265,7 @@ export const TurfBookingPage: React.FC = () => {
                     max={addDays(today, 30)}
                     value={date}
                     onChange={(e) => handleDateChange(e.target.value)}
-                    className="w-full px-3.5 py-2.5 border border-slate-200 rounded-lg text-sm font-medium focus:outline-none focus:border-blue-600"
+                    className="w-full min-h-[44px] px-3.5 py-2.5 border border-slate-200 rounded-xl text-sm font-medium focus:outline-none focus:border-[#0B1628]"
                   />
                 </div>
                 <div>
@@ -276,9 +276,9 @@ export const TurfBookingPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleDurationChange(1)}
-                      className={`py-2.5 text-xs font-semibold rounded-lg border transition-colors ${
+                      className={`min-h-[44px] py-2.5 text-xs font-semibold rounded-xl border transition-colors ${
                         durationHours === 1
-                          ? 'bg-blue-600 text-white border-blue-600'
+                          ? 'bg-[#0B1628] text-white border-[#0B1628]'
                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
@@ -287,9 +287,9 @@ export const TurfBookingPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleDurationChange(2)}
-                      className={`py-2.5 text-xs font-semibold rounded-lg border transition-colors ${
+                      className={`min-h-[44px] py-2.5 text-xs font-semibold rounded-xl border transition-colors ${
                         durationHours === 2
-                          ? 'bg-blue-600 text-white border-blue-600'
+                          ? 'bg-[#0B1628] text-white border-[#0B1628]'
                           : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
                       }`}
                     >
@@ -321,14 +321,14 @@ export const TurfBookingPage: React.FC = () => {
                         type="button"
                         disabled={isDisabled}
                         onClick={() => handleSlotClick(slot)}
-                        className={`p-3.5 rounded-lg border text-left flex items-center justify-between transition-colors ${
+                        className={`min-h-[52px] p-3.5 rounded-xl border text-left flex items-center justify-between transition-colors ${
                           isSelected
-                            ? 'bg-blue-600 text-white border-blue-600'
+                            ? 'bg-[#0B1628] text-white border-[#0B1628]'
                             : isDisabled
                             ? info.status === 'Blocked'
                               ? 'bg-amber-50 border-amber-200 text-amber-800 cursor-not-allowed opacity-80'
                               : 'bg-slate-100 border-slate-200 text-slate-400 cursor-not-allowed'
-                            : 'bg-white border-slate-200 hover:border-blue-600 text-slate-800'
+                            : 'bg-white border-slate-200 hover:border-[#0B1628] text-slate-800'
                         }`}
                       >
                         <div>
@@ -366,7 +366,7 @@ export const TurfBookingPage: React.FC = () => {
                     setErrorMsg('');
                     setStep(2);
                   }}
-                  className="px-6 py-2.5 bg-[#172D4D] text-white text-sm font-semibold rounded-lg hover:bg-[#1e3a63] transition-colors"
+                  className="min-h-[44px] w-full sm:w-auto px-6 py-2.5 bg-[#0B1628] text-white text-sm font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
                 >
                   Continue to Customer Details
                 </button>
@@ -544,18 +544,18 @@ export const TurfBookingPage: React.FC = () => {
                 <span>Simulate payment gateway failure (demo test toggle)</span>
               </label>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={() => setStep(2)}
-                  className="px-4 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+                  className="min-h-[44px] px-4 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50"
                 >
                   Back
                 </button>
                 <button
                   type="button"
                   onClick={handleConfirmPayment}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700"
+                  className="min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-[#0B1628] text-white text-sm font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
                 >
                   <ShieldCheck className="w-4 h-4" />
                   <span>Confirm &amp; Pay {formatINR(pricing.totalAmount)}</span>
@@ -566,7 +566,7 @@ export const TurfBookingPage: React.FC = () => {
         </div>
 
         {/* Summary & Coupon Sidebar */}
-        <aside className="lg:col-span-4 bg-white border border-slate-200 rounded-xl p-6 space-y-5 sticky top-24">
+        <aside className="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-5 lg:sticky lg:top-24">
           <div>
             <h3 className="text-base font-bold text-slate-900">Booking Price Summary</h3>
             <p className="text-xs text-slate-500 mt-0.5">{formatDateShort(date)}</p>

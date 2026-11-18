@@ -91,10 +91,10 @@ export const AdminCustomersPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 font-bold text-slate-900">
             Shared Customer Database
           </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
             Unified customer profiles across Turf, Resort, and Restaurant ({customers.length} customers)
           </p>
         </div>
@@ -111,7 +111,50 @@ export const AdminCustomersPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile Stacked Customer Cards (< md) */}
+      <div className="md:hidden space-y-3">
+        {enrichedCustomers.map((c) => (
+          <div key={c.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="font-mono-tabular font-bold text-slate-500">{c.id}</div>
+                <div className="text-sm font-bold text-slate-900 mt-0.5">{c.name}</div>
+                <div className="text-slate-600 font-mono-tabular">{c.phone}</div>
+                <div className="text-slate-500 truncate max-w-[240px]">{c.email}</div>
+              </div>
+              <div className="text-right">
+                <div className="text-sm font-bold font-mono-tabular text-emerald-700">
+                  {formatINR(c.totalSpent)}
+                </div>
+                <div className="text-[11px] text-slate-500 font-mono-tabular">
+                  {c.totalBookings} booking(s)
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setDetailCust(c)}
+                className="flex-1 inline-flex items-center justify-center gap-1 min-h-[38px] px-3 py-1.5 border border-slate-200 rounded-xl font-medium text-slate-700"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>History</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => openEdit(c)}
+                className="flex-1 inline-flex items-center justify-center gap-1 min-h-[38px] px-3 py-1.5 border border-slate-200 rounded-xl font-medium text-slate-700"
+              >
+                <Pencil className="w-3.5 h-3.5" />
+                <span>Edit</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Tablet & Desktop Table (md+) */}
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -152,7 +195,7 @@ export const AdminCustomersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setDetailCust(c)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-slate-700 hover:bg-slate-100 rounded"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-slate-700 hover:bg-slate-100 rounded-lg"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       <span>History</span>
@@ -160,7 +203,7 @@ export const AdminCustomersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => openEdit(c)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 text-slate-700 hover:bg-slate-100 rounded ml-1"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 text-slate-700 hover:bg-slate-100 rounded-lg ml-1"
                     >
                       <Pencil className="w-3.5 h-3.5" />
                       <span>Edit</span>

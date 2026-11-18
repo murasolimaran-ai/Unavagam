@@ -53,7 +53,7 @@ export const AdminResortCheckInOutPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => onAction(b.id)}
-                className="px-3.5 py-2 bg-[#172D4D] hover:bg-[#1e3a63] text-white text-xs font-semibold rounded-lg"
+                className="min-h-[40px] px-3.5 py-2 bg-[#0B1628] hover:bg-[#172D4D] text-white text-xs font-semibold rounded-xl transition-colors"
               >
                 {actionLabel}
               </button>
@@ -67,7 +67,7 @@ export const AdminResortCheckInOutPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+        <h1 className="type-h1 text-[#0B1628]">
           Front Desk: Check-in / Check-out
         </h1>
         <p className="text-xs text-slate-500 mt-0.5">
@@ -76,7 +76,7 @@ export const AdminResortCheckInOutPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <section className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
             <h2 className="text-sm font-bold text-slate-900">Today&apos;s Arrivals</h2>
             <span className="text-xs font-mono-tabular font-semibold text-emerald-700">
@@ -88,7 +88,7 @@ export const AdminResortCheckInOutPage: React.FC = () => {
           )}
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <section className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
             <h2 className="text-sm font-bold text-slate-900">Today&apos;s Departures</h2>
             <span className="text-xs font-mono-tabular font-semibold text-amber-700">
@@ -100,7 +100,7 @@ export const AdminResortCheckInOutPage: React.FC = () => {
           )}
         </section>
 
-        <section className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <section className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="px-5 py-3.5 bg-slate-50 border-b border-slate-200 flex justify-between items-center">
             <h2 className="text-sm font-bold text-slate-900">Currently Staying In-House</h2>
             <span className="text-xs font-mono-tabular font-semibold text-blue-700">

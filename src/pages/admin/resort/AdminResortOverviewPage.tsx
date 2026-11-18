@@ -29,22 +29,22 @@ export const AdminResortOverviewPage: React.FC = () => {
           <p className="text-xs font-semibold text-emerald-700 inline-flex items-center gap-1.5">
             <BedDouble className="w-3.5 h-3.5" /> Resort Operations
           </p>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Resort Overview</h1>
+          <h1 className="type-h1 text-[#0B1628]">Resort Overview</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             {totalRooms} individual rooms across {roomCategories.length} room categories
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Link
             to="/admin/resort/check-in-out"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-700 text-white text-xs font-semibold rounded-lg hover:bg-emerald-800"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             <CalendarCheck className="w-3.5 h-3.5" />
             <span>Check-in / Out Desk</span>
           </Link>
           <Link
             to="/admin/resort/availability"
-            className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Availability Calendar</span>
@@ -54,37 +54,37 @@ export const AdminResortOverviewPage: React.FC = () => {
 
       {/* 6 KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Total Rooms</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {totalRooms}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Occupied</div>
-          <div className="text-2xl font-bold font-mono-tabular text-blue-700 mt-1">{occupied}</div>
+          <div className="type-h2 font-mono-tabular text-blue-700 mt-1">{occupied}</div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Available</div>
-          <div className="text-2xl font-bold font-mono-tabular text-emerald-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-emerald-700 mt-1">
             {available}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Check-ins</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {todaysCheckIns.length}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Check-outs</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {todaysCheckOuts.length}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Total Revenue</div>
-          <div className="text-xl font-bold font-mono-tabular text-emerald-700 mt-1">
+          <div className="type-h3 font-mono-tabular text-emerald-700 mt-1">
             {formatINR(totalRevenue)}
           </div>
         </div>
@@ -92,7 +92,7 @@ export const AdminResortOverviewPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Room Category Breakdown */}
-        <div className="lg:col-span-6 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900 mb-3">
             Room Inventory by Category
           </h2>
@@ -122,7 +122,7 @@ export const AdminResortOverviewPage: React.FC = () => {
         </div>
 
         {/* Today's Arrivals */}
-        <div className="lg:col-span-6 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-5">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-bold text-slate-900">
               Today&apos;s Arrivals ({formatDateShort(today)})

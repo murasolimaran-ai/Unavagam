@@ -33,27 +33,27 @@ export const AdminTurfBookingsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Turf Bookings</h1>
+          <h1 className="type-h1 text-[#0B1628]">Turf Bookings</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Confirm, complete, or cancel slot bookings. Cancelled slots release automatically.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <div className="relative">
+          <div className="relative flex-1 sm:flex-initial">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search ID, name, phone..."
-              className="pl-9 pr-3 py-2 border border-slate-200 rounded-lg text-xs bg-white w-56"
+              className="w-full sm:w-56 min-h-[40px] pl-9 pr-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-none focus:border-[#0B1628]"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as 'All' | GeneralBookingStatus)}
-            className="px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white"
+            className="min-h-[40px] px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-none focus:border-[#0B1628]"
           >
             <option value="All">All Statuses</option>
             <option value="Pending">Pending</option>
@@ -64,7 +64,71 @@ export const AdminTurfBookingsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile stacked booking cards */}
+      <div className="md:hidden space-y-3">
+        {filtered.map((b) => (
+          <div key={b.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-xs font-mono-tabular font-bold text-[#0B1628]">{b.id}</div>
+                <div className="text-sm font-semibold text-slate-900 mt-0.5">{b.customerName}</div>
+                <div className="text-[11px] font-mono-tabular text-slate-500">{b.customerPhone}</div>
+              </div>
+              <StatusLabel status={b.bookingStatus} />
+            </div>
+            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+              <div>
+                <span className="text-[11px] text-slate-400 block">Date &amp; Slots</span>
+                <span className="font-mono-tabular font-medium text-slate-800">{formatDateShort(b.date)}</span>
+                <div className="font-mono-tabular text-[11px] text-blue-700">{b.slots.join(', ')}</div>
+              </div>
+              <div className="text-right">
+                <span className="text-[11px] text-slate-400 block">Amount</span>
+                <span className="font-mono-tabular font-bold text-slate-900">{formatINR(b.totalAmount)}</span>
+                <div className="mt-0.5"><StatusLabel status={b.paymentStatus} /></div>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => setSelected(b)}
+                className="min-h-[38px] px-3 py-1.5 border border-slate-200 text-slate-700 rounded-xl text-xs font-medium inline-flex items-center gap-1"
+              >
+                <Eye className="w-3.5 h-3.5" /> View
+              </button>
+              {b.bookingStatus === 'Pending' && (
+                <button
+                  type="button"
+                  onClick={() => updateTurfBookingStatus(b.id, 'Confirmed')}
+                  className="min-h-[38px] px-3 py-1.5 bg-emerald-700 text-white rounded-xl text-xs font-semibold"
+                >
+                  Confirm
+                </button>
+              )}
+              {b.bookingStatus === 'Confirmed' && (
+                <button
+                  type="button"
+                  onClick={() => updateTurfBookingStatus(b.id, 'Completed')}
+                  className="min-h-[38px] px-3 py-1.5 bg-[#0B1628] text-white rounded-xl text-xs font-semibold"
+                >
+                  Complete
+                </button>
+              )}
+              {(b.bookingStatus === 'Pending' || b.bookingStatus === 'Confirmed') && (
+                <button
+                  type="button"
+                  onClick={() => updateTurfBookingStatus(b.id, 'Cancelled')}
+                  className="min-h-[38px] px-3 py-1.5 border border-rose-200 text-rose-700 rounded-xl text-xs font-medium"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

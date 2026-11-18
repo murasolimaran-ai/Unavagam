@@ -167,10 +167,10 @@ export const AllBookingsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-          All Bookings &amp; Orders (Unified View)
+        <h1 className="type-h1 font-bold text-slate-900">
+          All Bookings &amp; Orders
         </h1>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
           Single searchable ledger combining Turf Slots, Resort Stays, Food Orders, and Table Reservations.
         </p>
       </div>
@@ -262,8 +262,48 @@ export const AllBookingsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile Card Stack (< md) */}
+      <div className="md:hidden space-y-3">
+        {allRecords.map((rec) => (
+          <div key={rec.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono-tabular font-bold text-slate-900">{rec.id}</span>
+                  <ServiceTag service={rec.service} />
+                </div>
+                <div className="font-semibold text-slate-900 mt-1">{rec.customerName}</div>
+                <div className="text-[11px] font-mono-tabular text-slate-500">{rec.customerPhone}</div>
+              </div>
+              <StatusLabel status={rec.status} />
+            </div>
+
+            <div className="text-slate-700">{rec.summary}</div>
+
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              <span className="font-mono-tabular text-slate-500">{formatDateShort(rec.date)}</span>
+              <span className="font-mono-tabular font-bold text-slate-900">
+                {rec.amount > 0 ? formatINR(rec.amount) : 'No Fee'}
+              </span>
+            </div>
+
+            <div className="flex items-center justify-between pt-1">
+              <StatusLabel status={rec.paymentStatus} />
+              <button
+                type="button"
+                onClick={() => setSelected(rec)}
+                className="inline-flex items-center gap-1.5 min-h-[38px] px-3 py-1.5 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>Manage</span>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Tablet & Desktop Table (md+) */}
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -314,7 +354,7 @@ export const AllBookingsPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setSelected(rec)}
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-700 hover:bg-slate-100"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-slate-200 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-100"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       <span>Manage</span>

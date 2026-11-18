@@ -43,7 +43,7 @@ export const AdminStaffPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Staff &amp; Role Structure
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -53,13 +53,49 @@ export const AdminStaffPage: React.FC = () => {
         <button
           type="button"
           onClick={() => setModalOpen(true)}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#172D4D] text-white text-xs font-semibold rounded-lg self-start"
+          className="min-h-[42px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors self-start"
         >
           <Plus className="w-3.5 h-3.5" /> Add Staff Member
         </button>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile stacked staff cards */}
+      <div className="md:hidden space-y-3">
+        {staff.map((s) => (
+          <div key={s.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-xs font-mono-tabular font-bold text-[#0B1628]">{s.id}</div>
+                <div className="text-sm font-semibold text-slate-900 mt-0.5">{s.name}</div>
+                <div className="text-[11px] text-slate-500">{s.email} · {s.phone}</div>
+              </div>
+              <StatusLabel status={s.active ? 'Confirmed' : 'Cancelled'} />
+            </div>
+            <div className="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
+              <select
+                value={s.role}
+                onChange={(e) => updateStaff(s.id, { role: e.target.value as StaffRole })}
+                className="min-h-[38px] px-2.5 py-1.5 border border-slate-200 rounded-xl text-xs bg-white"
+              >
+                {ROLES.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                onClick={() => updateStaff(s.id, { active: !s.active })}
+                className="min-h-[38px] px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-medium hover:bg-slate-50"
+              >
+                {s.active ? 'Deactivate' : 'Activate'}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>

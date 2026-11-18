@@ -16,7 +16,7 @@ export const AdminTableReservationsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Table Reservations</h1>
+          <h1 className="type-h1 text-[#0B1628]">Table Reservations</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Confirm, seat, complete, or cancel guest table bookings.
           </p>
@@ -25,7 +25,7 @@ export const AdminTableReservationsPage: React.FC = () => {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as 'All' | TableReservationStatus)}
-          className="px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white self-start"
+          className="min-h-[40px] px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white self-start focus:outline-none focus:border-[#0B1628]"
         >
           <option value="All">All Statuses</option>
           <option value="Pending">Pending</option>
@@ -36,7 +36,70 @@ export const AdminTableReservationsPage: React.FC = () => {
         </select>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile stacked reservation cards */}
+      <div className="md:hidden space-y-3">
+        {filtered.map((r) => (
+          <div key={r.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-xs font-mono-tabular font-bold text-[#0B1628]">{r.id}</div>
+                <div className="text-sm font-semibold text-slate-900 mt-0.5">{r.customerName}</div>
+                <div className="text-[11px] font-mono-tabular text-slate-500">{r.customerPhone}</div>
+              </div>
+              <StatusLabel status={r.status} />
+            </div>
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <div>
+                <span className="font-mono-tabular text-slate-800">
+                  {formatDateShort(r.date)} · {r.timeSlot}
+                </span>
+                <div className="text-[11px] text-slate-500">{r.guests} Guests</div>
+              </div>
+              <span className="font-semibold text-orange-700">{r.tableNumber}</span>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-slate-100">
+              {r.status === 'Pending' && (
+                <button
+                  type="button"
+                  onClick={() => updateTableReservationStatus(r.id, 'Confirmed')}
+                  className="min-h-[38px] px-3 py-1.5 bg-emerald-700 text-white rounded-xl text-xs font-semibold"
+                >
+                  Confirm
+                </button>
+              )}
+              {r.status === 'Confirmed' && (
+                <button
+                  type="button"
+                  onClick={() => updateTableReservationStatus(r.id, 'Seated')}
+                  className="min-h-[38px] px-3 py-1.5 bg-orange-600 text-white rounded-xl text-xs font-semibold"
+                >
+                  Mark Seated
+                </button>
+              )}
+              {r.status === 'Seated' && (
+                <button
+                  type="button"
+                  onClick={() => updateTableReservationStatus(r.id, 'Completed')}
+                  className="min-h-[38px] px-3 py-1.5 bg-[#0B1628] text-white rounded-xl text-xs font-semibold"
+                >
+                  Complete
+                </button>
+              )}
+              {(r.status === 'Pending' || r.status === 'Confirmed') && (
+                <button
+                  type="button"
+                  onClick={() => updateTableReservationStatus(r.id, 'Cancelled')}
+                  className="min-h-[38px] px-3 py-1.5 border border-rose-200 text-rose-700 rounded-xl text-xs font-medium"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

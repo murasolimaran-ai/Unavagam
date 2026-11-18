@@ -72,7 +72,7 @@ export const AdminTurfCalendarPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Interactive Turf Slot Calendar
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -81,12 +81,12 @@ export const AdminTurfCalendarPage: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg">
+          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl">
             <button
               type="button"
               onClick={() => setViewMode('daily')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                viewMode === 'daily' ? 'bg-[#172D4D] text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                viewMode === 'daily' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Daily View
@@ -94,19 +94,19 @@ export const AdminTurfCalendarPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setViewMode('weekly')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                viewMode === 'weekly' ? 'bg-[#172D4D] text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                viewMode === 'weekly' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Weekly Grid
             </button>
           </div>
 
-          <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-lg px-2 py-1">
+          <div className="flex items-center gap-1 bg-white border border-slate-200 rounded-xl px-2 py-1 min-h-[40px]">
             <button
               type="button"
               onClick={() => setSelectedDate(addDays(selectedDate, -1))}
-              className="p-1 hover:bg-slate-100 rounded"
+              className="p-1.5 hover:bg-slate-100 rounded-lg"
               aria-label="Previous day"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -120,7 +120,7 @@ export const AdminTurfCalendarPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setSelectedDate(addDays(selectedDate, 1))}
-              className="p-1 hover:bg-slate-100 rounded"
+              className="p-1.5 hover:bg-slate-100 rounded-lg"
               aria-label="Next day"
             >
               <ChevronRight className="w-4 h-4" />
@@ -130,7 +130,7 @@ export const AdminTurfCalendarPage: React.FC = () => {
       </div>
 
       {viewMode === 'daily' ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-5">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="flex items-center justify-between pb-4 border-b border-slate-200 mb-4">
             <h2 className="text-base font-bold text-slate-900">
               {formatDateShort(selectedDate)} · 10 Daily Slots
@@ -227,7 +227,7 @@ export const AdminTurfCalendarPage: React.FC = () => {
         </div>
       ) : (
         /* Weekly Grid */
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>

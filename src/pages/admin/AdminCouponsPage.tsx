@@ -44,9 +44,9 @@ export const AdminCouponsPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Coupons &amp; Offers</h1>
+          <h1 className="type-h1 text-[#0B1628]">Coupons &amp; Offers</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Promotional codes apply instantly across customer checkout flows.
           </p>
@@ -54,13 +54,57 @@ export const AdminCouponsPage: React.FC = () => {
         <button
           type="button"
           onClick={() => setModalOpen(true)}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#172D4D] text-white text-xs font-semibold rounded-lg hover:bg-[#1e3a63]"
+          className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors self-start"
         >
           <Plus className="w-3.5 h-3.5" /> Create Coupon
         </button>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile stacked coupon cards */}
+      <div className="md:hidden space-y-3">
+        {coupons.map((c) => (
+          <div key={c.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="inline-flex items-center gap-1.5 font-mono-tabular text-sm font-bold text-[#0B1628]">
+                  <Tag className="w-3.5 h-3.5 text-[#C89B54]" />
+                  {c.code}
+                </div>
+                <div className="text-xs font-medium text-slate-800 mt-0.5">{c.title}</div>
+              </div>
+              <StatusLabel status={c.active ? 'Confirmed' : 'Cancelled'} />
+            </div>
+            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+              <div>
+                <span className="text-[11px] text-slate-400 block">Discount</span>
+                <span className="font-mono-tabular font-semibold text-slate-900">
+                  {c.discountType === 'percentage'
+                    ? `${c.discountValue}% (max ${formatINR(c.maxDiscount)})`
+                    : formatINR(c.discountValue)}
+                </span>
+              </div>
+              <div className="text-right">
+                <span className="text-[11px] text-slate-400 block">Min Order</span>
+                <span className="font-mono-tabular font-semibold text-slate-900">{formatINR(c.minOrderAmount)}</span>
+              </div>
+            </div>
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              <span className="text-[11px] font-mono-tabular text-slate-500">
+                {formatDateShort(c.validFrom)} – {formatDateShort(c.validUntil)}
+              </span>
+              <button
+                type="button"
+                onClick={() => toggleCouponActive(c.id)}
+                className="min-h-[38px] px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-semibold hover:bg-slate-100"
+              >
+                {c.active ? 'Deactivate' : 'Activate'}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>

@@ -60,7 +60,7 @@ export const AdminRestaurantOverviewPage: React.FC = () => {
           <p className="text-xs font-semibold text-orange-700 inline-flex items-center gap-1.5">
             <UtensilsCrossed className="w-3.5 h-3.5" /> Restaurant &amp; Kitchen
           </p>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Restaurant Overview
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -68,17 +68,17 @@ export const AdminRestaurantOverviewPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Link
             to="/admin/restaurant/kitchen"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg hover:bg-orange-700"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             <ChefHat className="w-3.5 h-3.5" />
             <span>Open Kitchen Display (KDS)</span>
           </Link>
           <Link
             to="/admin/restaurant/orders"
-            className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
           >
             <ClipboardList className="w-3.5 h-3.5" />
             <span>All Orders</span>
@@ -88,52 +88,52 @@ export const AdminRestaurantOverviewPage: React.FC = () => {
 
       {/* 6 KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Orders</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {todaysOrders.length}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Revenue</div>
-          <div className="text-xl font-bold font-mono-tabular text-orange-700 mt-1">
+          <div className="type-h3 font-mono-tabular text-orange-700 mt-1">
             {formatINR(todaysRevenue)}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">New Orders</div>
-          <div className="text-2xl font-bold font-mono-tabular text-amber-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-amber-700 mt-1">
             {newCount}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Preparing</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {preparingCount}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Ready</div>
-          <div className="text-2xl font-bold font-mono-tabular text-emerald-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-emerald-700 mt-1">
             {readyCount}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today Table Res.</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {todaysTableRes}
           </div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900">7-Day Restaurant Sales Trend</h2>
           <p className="text-xs text-slate-500 mb-3">Dine-in, Takeaway &amp; Delivery revenue</p>
           <SimpleBarChart data={last7Days} height={190} defaultColor="#EA580C" />
         </div>
 
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900 mb-3">Top Popular Dishes</h2>
           <div className="divide-y divide-slate-100 text-xs">
             {popularDishes.map((d) => (
@@ -154,7 +154,7 @@ export const AdminRestaurantOverviewPage: React.FC = () => {
       </div>
 
       {/* Live Orders Queue */}
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-900">
             Active Kitchen Queue ({liveOrders.length})

@@ -34,14 +34,14 @@ export const AdminKitchenPage: React.FC = () => {
           <p className="text-xs font-semibold text-orange-700 inline-flex items-center gap-1.5">
             <ChefHat className="w-3.5 h-3.5" /> Kitchen Display System (KDS)
           </p>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Active Kitchen Order Tickets ({activeTickets.length})
           </h1>
         </div>
       </div>
 
       {activeTickets.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center">
           <p className="text-sm font-medium text-slate-700">No active kitchen tickets right now.</p>
           <p className="text-xs text-slate-500 mt-1">
             New customer food orders appear here automatically.
@@ -54,7 +54,7 @@ export const AdminKitchenPage: React.FC = () => {
             return (
               <div
                 key={order.id}
-                className="bg-white border border-slate-200 rounded-xl flex flex-col justify-between overflow-hidden"
+                className="bg-white border border-slate-200 rounded-2xl flex flex-col justify-between overflow-hidden"
               >
                 <div>
                   <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
@@ -111,7 +111,7 @@ export const AdminKitchenPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => updateFoodOrderStatus(order.id, next.next)}
-                      className="flex-1 py-2.5 bg-[#172D4D] hover:bg-[#1e3a63] text-white text-xs font-semibold rounded-lg transition-colors"
+                      className="min-h-[42px] flex-1 py-2.5 bg-[#0B1628] hover:bg-[#172D4D] text-white text-xs font-semibold rounded-xl transition-colors"
                     >
                       {next.label}
                     </button>
@@ -119,7 +119,7 @@ export const AdminKitchenPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => updateFoodOrderStatus(order.id, 'Cancelled')}
-                    className="px-3 py-2.5 border border-slate-200 text-rose-700 text-xs font-medium rounded-lg hover:bg-rose-50"
+                    className="min-h-[42px] px-3.5 py-2.5 border border-slate-200 text-rose-700 text-xs font-medium rounded-xl hover:bg-rose-50"
                   >
                     Cancel
                   </button>

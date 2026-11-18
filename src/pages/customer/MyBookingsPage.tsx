@@ -106,7 +106,9 @@ export const MyBookingsPage: React.FC = () => {
             Customer: `${o.customerName} (${o.customerPhone})`,
             Fulfilment: o.fulfilmentType,
             Destination: o.tableNumber || o.pickupTime || o.deliveryAddress || '—',
-            Items: o.items.map((i) => `${i.quantity}× ${i.name} (${formatINR(i.price * i.quantity)})`).join('; '),
+            Items: o.items
+              .map((i) => `${i.quantity}× ${i.name} (${formatINR(i.price * i.quantity)})`)
+              .join('; '),
             Payment: `${o.paymentMethod} (${o.paymentStatus})`,
           },
         });
@@ -154,13 +156,13 @@ export const MyBookingsPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-[#172D4D]">
+          <p className="text-xs font-semibold text-[#C89B54] uppercase tracking-wider">
             {currentCustomer ? `Signed in as ${currentCustomer.name}` : 'All Demo Bookings'}
           </p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 font-bold text-slate-900 mt-1">
             My Bookings &amp; Live Orders
           </h1>
           <p className="text-sm text-slate-600 mt-1">
@@ -168,16 +170,16 @@ export const MyBookingsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg self-start">
+        <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-200/70 rounded-xl self-start">
           {(['All', 'Turf', 'Resort', 'Restaurant'] as const).map((tab) => (
             <button
               key={tab}
               type="button"
               onClick={() => setServiceFilter(tab)}
-              className={`px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+              className={`min-h-[40px] px-3.5 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                 serviceFilter === tab
-                  ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#0B1628] text-white shadow-xs'
+                  : 'text-slate-700 hover:text-slate-900'
               }`}
             >
               {tab}
@@ -187,98 +189,155 @@ export const MyBookingsPage: React.FC = () => {
       </div>
 
       {records.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
+        <div className="bg-white border border-slate-200 rounded-2xl p-10 sm:p-12 text-center">
           <p className="text-sm font-medium text-slate-700">No bookings found for this account.</p>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
             <Link
               to="/turf/booking"
-              className="px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-lg"
+              className="inline-flex items-center justify-center min-h-[42px] px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl"
             >
               Book Turf Slot
             </Link>
             <Link
               to="/resort/booking"
-              className="px-4 py-2 bg-emerald-700 text-white text-xs font-semibold rounded-lg"
+              className="inline-flex items-center justify-center min-h-[42px] px-4 py-2 bg-emerald-700 text-white text-xs font-semibold rounded-xl"
             >
               Book Resort Room
             </Link>
             <Link
               to="/restaurant/menu"
-              className="px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg"
+              className="inline-flex items-center justify-center min-h-[42px] px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-xl"
             >
               Order Food
             </Link>
           </div>
         </div>
       ) : (
-        <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
-                  <th className="py-3 px-4">Booking ID</th>
-                  <th className="py-3 px-4">Service</th>
-                  <th className="py-3 px-4">Summary</th>
-                  <th className="py-3 px-4">Date &amp; Time</th>
-                  <th className="py-3 px-4 text-right">Amount</th>
-                  <th className="py-3 px-4">Payment</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-sm">
-                {records.map((rec) => (
-                  <tr key={rec.id} className="hover:bg-slate-50/70">
-                    <td className="py-3 px-4 font-mono-tabular text-xs font-semibold text-slate-900">
-                      {rec.id}
-                    </td>
-                    <td className="py-3 px-4">
-                      <div className="flex flex-col">
-                        <ServiceTag service={rec.service} />
-                        <span className="text-[11px] text-slate-500">{rec.type}</span>
-                      </div>
-                    </td>
-                    <td className="py-3 px-4 text-xs text-slate-800 max-w-xs truncate">
-                      {rec.title}
-                    </td>
-                    <td className="py-3 px-4 text-xs font-mono-tabular text-slate-600 whitespace-nowrap">
-                      {rec.dateLabel}
-                    </td>
-                    <td className="py-3 px-4 text-right font-mono-tabular text-xs font-semibold text-slate-900">
-                      {rec.amount > 0 ? formatINR(rec.amount) : '—'}
-                    </td>
-                    <td className="py-3 px-4">
-                      <StatusLabel status={rec.paymentStatus} />
-                    </td>
-                    <td className="py-3 px-4">
-                      <StatusLabel status={rec.status} />
-                    </td>
-                    <td className="py-3 px-4 text-right whitespace-nowrap">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedRecord(rec)}
-                        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100 rounded-md"
-                      >
-                        <Eye className="w-3.5 h-3.5" />
-                        <span>Details</span>
-                      </button>
-                      {rec.canCancel && (
+        <>
+          {/* Mobile Stacked Card View (< md) */}
+          <div className="md:hidden space-y-3">
+            {records.map((rec) => (
+              <div
+                key={rec.id}
+                className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <div className="flex items-center gap-2 text-xs">
+                      <span className="font-mono-tabular font-bold text-slate-900">{rec.id}</span>
+                      <span aria-hidden="true" className="text-slate-300">
+                        ·
+                      </span>
+                      <ServiceTag service={rec.service} />
+                    </div>
+                    <p className="text-[11px] text-slate-500 mt-0.5">{rec.type}</p>
+                  </div>
+                  <StatusLabel status={rec.status} />
+                </div>
+
+                <div className="text-sm font-semibold text-slate-900">{rec.title}</div>
+
+                <div className="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+                  <span className="font-mono-tabular text-slate-600">{rec.dateLabel}</span>
+                  <span className="font-mono-tabular font-bold text-slate-900">
+                    {rec.amount > 0 ? formatINR(rec.amount) : 'No Fee'}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRecord(rec)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 min-h-[42px] px-3 py-2 border border-slate-200 text-xs font-semibold text-slate-700 rounded-xl hover:bg-slate-50"
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Details</span>
+                  </button>
+                  {rec.canCancel && (
+                    <button
+                      type="button"
+                      onClick={() => handleCancel(rec)}
+                      className="flex-1 inline-flex items-center justify-center gap-1.5 min-h-[42px] px-3 py-2 border border-rose-200 text-xs font-semibold text-rose-700 rounded-xl hover:bg-rose-50"
+                    >
+                      <XCircle className="w-3.5 h-3.5" />
+                      <span>Cancel</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tablet & Desktop Tabular Ledger (md+) */}
+          <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-200 bg-slate-50 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
+                    <th className="py-3.5 px-4">Booking ID</th>
+                    <th className="py-3.5 px-4">Service</th>
+                    <th className="py-3.5 px-4">Summary</th>
+                    <th className="py-3.5 px-4">Date &amp; Time</th>
+                    <th className="py-3.5 px-4 text-right">Amount</th>
+                    <th className="py-3.5 px-4">Payment</th>
+                    <th className="py-3.5 px-4">Status</th>
+                    <th className="py-3.5 px-4 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-sm">
+                  {records.map((rec) => (
+                    <tr key={rec.id} className="hover:bg-slate-50/70">
+                      <td className="py-3.5 px-4 font-mono-tabular text-xs font-semibold text-slate-900">
+                        {rec.id}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <div className="flex flex-col">
+                          <ServiceTag service={rec.service} />
+                          <span className="text-[11px] text-slate-500">{rec.type}</span>
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 text-xs text-slate-800 max-w-xs truncate">
+                        {rec.title}
+                      </td>
+                      <td className="py-3.5 px-4 text-xs font-mono-tabular text-slate-600 whitespace-nowrap">
+                        {rec.dateLabel}
+                      </td>
+                      <td className="py-3.5 px-4 text-right font-mono-tabular text-xs font-semibold text-slate-900">
+                        {rec.amount > 0 ? formatINR(rec.amount) : '—'}
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <StatusLabel status={rec.paymentStatus} />
+                      </td>
+                      <td className="py-3.5 px-4">
+                        <StatusLabel status={rec.status} />
+                      </td>
+                      <td className="py-3.5 px-4 text-right whitespace-nowrap">
                         <button
                           type="button"
-                          onClick={() => handleCancel(rec)}
-                          className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-rose-700 hover:bg-rose-50 rounded-md ml-1"
+                          onClick={() => setSelectedRecord(rec)}
+                          className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100 rounded-lg"
                         >
-                          <XCircle className="w-3.5 h-3.5" />
-                          <span>Cancel</span>
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Details</span>
                         </button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                        {rec.canCancel && (
+                          <button
+                            type="button"
+                            onClick={() => handleCancel(rec)}
+                            className="inline-flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-rose-700 hover:bg-rose-50 rounded-lg ml-1"
+                          >
+                            <XCircle className="w-3.5 h-3.5" />
+                            <span>Cancel</span>
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       <Modal
@@ -289,7 +348,7 @@ export const MyBookingsPage: React.FC = () => {
       >
         {selectedRecord && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200">
               <ServiceTag service={selectedRecord.service} />
               <StatusLabel status={selectedRecord.status} />
             </div>
@@ -314,7 +373,7 @@ export const MyBookingsPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleCancel(selectedRecord)}
-                  className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-lg"
+                  className="min-h-[42px] px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold rounded-xl"
                 >
                   Cancel This Booking
                 </button>

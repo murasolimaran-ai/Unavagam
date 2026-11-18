@@ -12,7 +12,7 @@ export const AdminResortAvailabilityPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Room Availability Matrix
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -20,11 +20,11 @@ export const AdminResortAvailabilityPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg px-2 py-1">
+        <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-2 py-1 min-h-[40px] self-start">
           <button
             type="button"
             onClick={() => setStartDate(addDays(startDate, -5))}
-            className="p-1 hover:bg-slate-100 rounded"
+            className="p-1.5 hover:bg-slate-100 rounded-lg"
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
@@ -37,14 +37,14 @@ export const AdminResortAvailabilityPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setStartDate(addDays(startDate, 5))}
-            className="p-1 hover:bg-slate-100 rounded"
+            className="p-1.5 hover:bg-slate-100 rounded-lg"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

@@ -101,17 +101,17 @@ export const AdminMenuManagementPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Menu Management</h1>
+          <h1 className="type-h1 text-[#0B1628]">Menu Management</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Changes sync immediately with the Customer Restaurant Menu.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <select
             value={catFilter}
             onChange={(e) => setCatFilter(e.target.value)}
-            className="px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white"
+            className="min-h-[40px] px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-none focus:border-[#0B1628]"
           >
             <option value="ALL">All Categories ({foodItems.length})</option>
             {foodCategories.map((c) => (
@@ -123,14 +123,14 @@ export const AdminMenuManagementPage: React.FC = () => {
           <button
             type="button"
             onClick={openAdd}
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg hover:bg-orange-700"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             <Plus className="w-3.5 h-3.5" /> Add Dish
           </button>
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

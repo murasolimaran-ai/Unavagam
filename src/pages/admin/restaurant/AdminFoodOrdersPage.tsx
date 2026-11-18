@@ -23,21 +23,21 @@ export const AdminFoodOrdersPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Live Food Orders</h1>
+          <h1 className="type-h1 text-[#0B1628]">Live Food Orders</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Accept, prepare, dispatch, and complete Dine-in, Takeaway, and Home Delivery orders.
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg">
+          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl overflow-x-auto">
             {(['All', 'Dine-in', 'Takeaway', 'Home Delivery'] as const).map((f) => (
               <button
                 key={f}
                 type="button"
                 onClick={() => setFulfilmentFilter(f)}
-                className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors whitespace-nowrap ${
-                  fulfilmentFilter === f ? 'bg-orange-600 text-white' : 'text-slate-600'
+                className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
+                  fulfilmentFilter === f ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
                 {f === 'Takeaway' ? 'Pickup' : f}
@@ -48,7 +48,7 @@ export const AdminFoodOrdersPage: React.FC = () => {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value as 'All' | FoodOrderStatus)}
-            className="px-3 py-2 border border-slate-200 rounded-lg text-xs bg-white"
+            className="min-h-[40px] px-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-none focus:border-[#0B1628]"
           >
             <option value="All">Status: All</option>
             <option value="New">New</option>
@@ -62,7 +62,89 @@ export const AdminFoodOrdersPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile stacked order cards */}
+      <div className="md:hidden space-y-3">
+        {filtered.map((o) => (
+          <div key={o.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-3">
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <div className="text-xs font-mono-tabular font-bold text-[#0B1628]">{o.id}</div>
+                <div className="text-sm font-semibold text-slate-900 mt-0.5">{o.customerName}</div>
+                <div className="text-[11px] text-slate-500">
+                  {o.fulfilmentType} · {o.tableNumber || o.pickupTime || o.deliveryAddress || ''}
+                </div>
+              </div>
+              <StatusLabel status={o.orderStatus} />
+            </div>
+            <div className="text-xs text-slate-700 bg-slate-50 rounded-xl p-2.5">
+              {o.items.map((i) => `${i.quantity}× ${i.name}`).join(', ')}
+            </div>
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+              <span className="font-mono-tabular text-slate-500">{formatDateTimeIST(o.createdAt)}</span>
+              <span className="font-mono-tabular font-bold text-slate-900">{formatINR(o.totalAmount)}</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {o.orderStatus === 'New' && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => updateFoodOrderStatus(o.id, 'Accepted')}
+                    className="min-h-[38px] px-3 py-1.5 bg-emerald-700 text-white rounded-xl text-xs font-semibold"
+                  >
+                    Accept
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => updateFoodOrderStatus(o.id, 'Cancelled')}
+                    className="min-h-[38px] px-3 py-1.5 border border-rose-200 text-rose-700 rounded-xl text-xs font-medium"
+                  >
+                    Reject
+                  </button>
+                </>
+              )}
+              {o.orderStatus === 'Accepted' && (
+                <button
+                  type="button"
+                  onClick={() => updateFoodOrderStatus(o.id, 'Preparing')}
+                  className="min-h-[38px] px-3 py-1.5 bg-orange-600 text-white rounded-xl text-xs font-semibold"
+                >
+                  Start Preparing
+                </button>
+              )}
+              {o.orderStatus === 'Preparing' && (
+                <button
+                  type="button"
+                  onClick={() => updateFoodOrderStatus(o.id, 'Ready')}
+                  className="min-h-[38px] px-3 py-1.5 bg-emerald-700 text-white rounded-xl text-xs font-semibold"
+                >
+                  Mark Ready
+                </button>
+              )}
+              {o.orderStatus === 'Ready' && o.fulfilmentType === 'Home Delivery' && (
+                <button
+                  type="button"
+                  onClick={() => updateFoodOrderStatus(o.id, 'Out for Delivery')}
+                  className="min-h-[38px] px-3 py-1.5 bg-blue-600 text-white rounded-xl text-xs font-semibold"
+                >
+                  Out for Delivery
+                </button>
+              )}
+              {(o.orderStatus === 'Ready' && o.fulfilmentType !== 'Home Delivery') ||
+              o.orderStatus === 'Out for Delivery' ? (
+                <button
+                  type="button"
+                  onClick={() => updateFoodOrderStatus(o.id, 'Completed')}
+                  className="min-h-[38px] px-3 py-1.5 bg-[#0B1628] text-white rounded-xl text-xs font-semibold"
+                >
+                  Complete
+                </button>
+              ) : null}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>

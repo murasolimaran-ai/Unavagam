@@ -50,28 +50,30 @@ export const RestaurantMenuPage: React.FC = () => {
   }, [cart, foodItems]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-orange-700">Kaveri Courtyard Kitchen</p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          <p className="text-xs font-semibold text-orange-700 uppercase tracking-wider">
+            Kaveri Courtyard Kitchen
+          </p>
+          <h1 className="type-h1 font-bold text-slate-900 mt-1">
             Full Food &amp; Beverage Menu
           </h1>
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <div className="relative">
+          <div className="relative flex-1 sm:flex-initial">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search biryani, dosa, paneer..."
-              className="pl-9 pr-3 py-2 border border-slate-200 rounded-lg text-xs bg-white w-56 focus:outline-none focus:border-orange-600"
+              className="w-full sm:w-56 min-h-[42px] pl-9 pr-3 py-2 border border-slate-200 rounded-xl text-xs bg-white focus:outline-none focus:border-orange-600"
             />
           </div>
 
-          <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
+          <div className="flex items-center gap-1 p-1 bg-slate-200/70 rounded-xl">
             {(
               [
                 { id: 'ALL', label: 'All' },
@@ -83,7 +85,7 @@ export const RestaurantMenuPage: React.FC = () => {
                 key={d.id}
                 type="button"
                 onClick={() => setDietFilter(d.id)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                className={`min-h-[38px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                   dietFilter === d.id
                     ? 'bg-white text-slate-900 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -96,7 +98,7 @@ export const RestaurantMenuPage: React.FC = () => {
 
           <Link
             to="/restaurant/table-booking"
-            className="px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+            className="inline-flex items-center justify-center min-h-[42px] px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50"
           >
             Reserve Table Instead
           </Link>
@@ -108,9 +110,9 @@ export const RestaurantMenuPage: React.FC = () => {
         <button
           type="button"
           onClick={() => setSelectedCat('ALL')}
-          className={`px-3.5 py-2 text-xs font-semibold rounded-lg border whitespace-nowrap shrink-0 transition-colors ${
+          className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-xl border whitespace-nowrap shrink-0 transition-colors ${
             selectedCat === 'ALL'
-              ? 'bg-[#172D4D] text-white border-[#172D4D]'
+              ? 'bg-[#0B1628] text-white border-[#0B1628]'
               : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
           }`}
         >
@@ -121,9 +123,9 @@ export const RestaurantMenuPage: React.FC = () => {
             key={cat.id}
             type="button"
             onClick={() => setSelectedCat(cat.id)}
-            className={`px-3.5 py-2 text-xs font-semibold rounded-lg border whitespace-nowrap shrink-0 transition-colors ${
+            className={`min-h-[40px] px-3.5 py-2 text-xs font-semibold rounded-xl border whitespace-nowrap shrink-0 transition-colors ${
               selectedCat === cat.id
-                ? 'bg-[#172D4D] text-white border-[#172D4D]'
+                ? 'bg-[#0B1628] text-white border-[#0B1628]'
                 : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
             }`}
           >
@@ -134,7 +136,7 @@ export const RestaurantMenuPage: React.FC = () => {
 
       {/* Menu Grid */}
       {filteredItems.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center">
           <p className="text-sm font-medium text-slate-700">No dishes match your filter.</p>
           <button
             type="button"
@@ -143,7 +145,7 @@ export const RestaurantMenuPage: React.FC = () => {
               setDietFilter('ALL');
               setSearch('');
             }}
-            className="mt-3 px-4 py-2 bg-[#172D4D] text-white text-xs font-semibold rounded-lg"
+            className="mt-3 min-h-[42px] px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl"
           >
             Reset Filters
           </button>
@@ -162,15 +164,15 @@ export const RestaurantMenuPage: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className={`bg-white border border-slate-200 rounded-xl overflow-hidden flex flex-col ${
+                className={`bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col group ${
                   !item.available ? 'opacity-65' : ''
                 }`}
               >
-                <div className="aspect-[16/10] bg-slate-100">
+                <div className="aspect-[16/10] bg-slate-100 overflow-hidden">
                   <SmartImage
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
                 <div className="p-5 flex-1 flex flex-col justify-between">
@@ -197,7 +199,7 @@ export const RestaurantMenuPage: React.FC = () => {
                               [item.id]: e.target.value,
                             }))
                           }
-                          className="w-full px-2.5 py-1.5 border border-slate-200 rounded-md text-xs text-slate-700 bg-slate-50"
+                          className="w-full min-h-[38px] px-2.5 py-1.5 border border-slate-200 rounded-xl text-xs text-slate-700 bg-slate-50"
                         >
                           {item.customizations.map((c) => (
                             <option key={c} value={c}>
@@ -217,10 +219,11 @@ export const RestaurantMenuPage: React.FC = () => {
                     {!item.available ? (
                       <span className="text-xs font-semibold text-rose-600">Out of Stock</span>
                     ) : qty > 0 ? (
-                      <div className="flex items-center gap-3 border border-orange-600 rounded-lg px-3 py-1.5 text-xs font-semibold text-orange-700">
+                      <div className="flex items-center gap-3 border border-orange-600 rounded-xl px-3 min-h-[40px] text-xs font-semibold text-orange-700">
                         <button
                           type="button"
                           onClick={() => updateCartQty(item.id, qty - 1, custom)}
+                          className="px-1 py-1"
                         >
                           -
                         </button>
@@ -228,6 +231,7 @@ export const RestaurantMenuPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => addToCart(item.id, 1, custom)}
+                          className="px-1 py-1"
                         >
                           +
                         </button>
@@ -236,7 +240,7 @@ export const RestaurantMenuPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => addToCart(item.id, 1, custom)}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg hover:bg-orange-700 transition-colors"
+                        className="inline-flex items-center gap-1.5 min-h-[40px] px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-xl hover:bg-orange-700 transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
                         <span>Add to Cart</span>
@@ -250,11 +254,11 @@ export const RestaurantMenuPage: React.FC = () => {
         </div>
       )}
 
-      {/* Sticky Bottom Cart Bar */}
+      {/* Floating Cart Bar (sits cleanly above mobile 56px bottom nav) */}
       {cartSummary.count > 0 && (
-        <div className="sticky bottom-4 z-30 bg-[#172D4D] text-white px-5 py-3.5 rounded-xl shadow-lg flex items-center justify-between gap-4">
+        <div className="sticky bottom-16 md:bottom-4 z-30 bg-[#0B1628] text-white px-4 sm:px-5 py-3.5 rounded-2xl shadow-xl border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3 text-sm">
-            <ShoppingBag className="w-4 h-4 text-orange-400" />
+            <ShoppingBag className="w-4 h-4 text-[#C89B54] shrink-0" />
             <span>
               <strong className="font-mono-tabular">{cartSummary.count}</strong> item(s) ·{' '}
               <strong className="font-mono-tabular">{formatINR(cartSummary.total)}</strong>
@@ -263,13 +267,13 @@ export const RestaurantMenuPage: React.FC = () => {
           <div className="flex items-center gap-2">
             <Link
               to="/restaurant/cart"
-              className="px-4 py-2 border border-slate-500 text-xs font-medium rounded-lg hover:bg-white/10"
+              className="flex-1 sm:flex-initial text-center min-h-[40px] inline-flex items-center justify-center px-4 py-2 border border-white/20 text-xs font-medium rounded-xl hover:bg-white/10"
             >
               View Cart
             </Link>
             <Link
               to="/restaurant/checkout"
-              className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold rounded-lg"
+              className="flex-1 sm:flex-initial text-center min-h-[40px] inline-flex items-center justify-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold rounded-xl"
             >
               Checkout →
             </Link>

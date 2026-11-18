@@ -83,7 +83,7 @@ export const AdminReportsPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Reports &amp; Analytics
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -91,14 +91,14 @@ export const AdminReportsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg self-start">
+        <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl self-start">
           {([7, 30, 90] as const).map((d) => (
             <button
               key={d}
               type="button"
               onClick={() => setDaysWindow(d)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                daysWindow === d ? 'bg-[#172D4D] text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                daysWindow === d ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Last {d} Days
@@ -109,27 +109,27 @@ export const AdminReportsPage: React.FC = () => {
 
       {/* Overall KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Total Period Revenue</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {formatINR(totalRev)}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Total Active Bookings</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {activeTurf.length + activeResort.length + activeFood.length}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Resort Live Occupancy</div>
-          <div className="text-2xl font-bold font-mono-tabular text-emerald-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-emerald-700 mt-1">
             {roomOccupancyPct}%
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Customer Base</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {customers.length}
           </div>
         </div>
@@ -137,7 +137,7 @@ export const AdminReportsPage: React.FC = () => {
 
       {/* Service Revenue Breakdown + Turf Popular Times */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900 mb-4">Revenue Share by Service</h2>
           <ServiceSplitBar
             items={[
@@ -163,7 +163,7 @@ export const AdminReportsPage: React.FC = () => {
           />
         </div>
 
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900">
             Turf Popular Booking Times (Bookings per Slot)
           </h2>
@@ -181,35 +181,37 @@ export const AdminReportsPage: React.FC = () => {
 
       {/* Resort Category Performance + Restaurant Fulfilment */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-200">
             <h2 className="text-sm font-bold text-slate-900">Resort Category Performance</h2>
           </div>
-          <table className="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase">
-                <th className="py-2.5 px-4">Room Category</th>
-                <th className="py-2.5 px-4 text-right">Bookings</th>
-                <th className="py-2.5 px-4 text-right">Room Nights</th>
-                <th className="py-2.5 px-4 text-right">Revenue</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-100">
-              {resortCatPerf.map((row) => (
-                <tr key={row.name}>
-                  <td className="py-2.5 px-4 font-semibold text-slate-900">{row.name}</td>
-                  <td className="py-2.5 px-4 text-right font-mono-tabular">{row.bookings}</td>
-                  <td className="py-2.5 px-4 text-right font-mono-tabular">{row.nights}</td>
-                  <td className="py-2.5 px-4 text-right font-mono-tabular font-semibold text-emerald-700">
-                    {formatINR(row.rev)}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase">
+                  <th className="py-2.5 px-4">Room Category</th>
+                  <th className="py-2.5 px-4 text-right">Bookings</th>
+                  <th className="py-2.5 px-4 text-right">Room Nights</th>
+                  <th className="py-2.5 px-4 text-right">Revenue</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {resortCatPerf.map((row) => (
+                  <tr key={row.name}>
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">{row.name}</td>
+                    <td className="py-2.5 px-4 text-right font-mono-tabular">{row.bookings}</td>
+                    <td className="py-2.5 px-4 text-right font-mono-tabular">{row.nights}</td>
+                    <td className="py-2.5 px-4 text-right font-mono-tabular font-semibold text-emerald-700">
+                      {formatINR(row.rev)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-200">
             <h2 className="text-sm font-bold text-slate-900">
               Restaurant Orders: Dine-in vs Takeaway vs Delivery

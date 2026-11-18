@@ -34,10 +34,10 @@ export const AdminPaymentsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+        <h1 className="type-h1 font-bold text-slate-900">
           Payments &amp; Transactions
         </h1>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
           Unified simulated transaction ledger across UPI, Card, and Cash settlements.
         </p>
       </div>
@@ -105,8 +105,50 @@ export const AdminPaymentsPage: React.FC = () => {
         </select>
       </div>
 
-      {/* Table */}
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Mobile Transaction Cards (< md) */}
+      <div className="md:hidden space-y-3">
+        {filtered.map((p) => (
+          <div key={p.id} className="bg-white border border-slate-200 rounded-2xl p-4 space-y-2 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-mono-tabular font-bold text-slate-900">{p.id}</span>
+              <StatusLabel status={p.status} />
+            </div>
+            <div className="flex items-center justify-between text-slate-700">
+              <span className="font-medium">{p.customerName}</span>
+              <ServiceTag service={p.service} />
+            </div>
+            <div className="text-slate-500 font-mono-tabular">
+              {p.bookingId} · {p.method} · {formatDateTimeIST(p.date)}
+            </div>
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              <span className="text-sm font-bold font-mono-tabular text-slate-900">
+                {formatINR(p.amount)}
+              </span>
+              {p.status === 'Pending' && (
+                <button
+                  type="button"
+                  onClick={() => updatePaymentStatus(p.id, 'Paid')}
+                  className="min-h-[36px] px-3 py-1.5 bg-emerald-700 text-white rounded-xl font-semibold"
+                >
+                  Mark Paid
+                </button>
+              )}
+              {p.status === 'Paid' && (
+                <button
+                  type="button"
+                  onClick={() => updatePaymentStatus(p.id, 'Refunded')}
+                  className="min-h-[36px] px-3 py-1.5 border border-slate-200 text-slate-700 rounded-xl font-medium"
+                >
+                  Refund
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Tablet & Desktop Table (md+) */}
+      <div className="hidden md:block bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -148,7 +190,7 @@ export const AdminPaymentsPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => updatePaymentStatus(p.id, 'Paid')}
-                        className="px-2.5 py-1 bg-emerald-700 text-white rounded text-[11px] font-semibold hover:bg-emerald-800"
+                        className="px-2.5 py-1 bg-emerald-700 text-white rounded-lg text-[11px] font-semibold hover:bg-emerald-800"
                       >
                         Mark Paid
                       </button>
@@ -157,7 +199,7 @@ export const AdminPaymentsPage: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => updatePaymentStatus(p.id, 'Refunded')}
-                        className="px-2.5 py-1 border border-slate-200 text-slate-700 rounded text-[11px] font-medium hover:bg-slate-100"
+                        className="px-2.5 py-1 border border-slate-200 text-slate-700 rounded-lg text-[11px] font-medium hover:bg-slate-100"
                       >
                         Refund
                       </button>

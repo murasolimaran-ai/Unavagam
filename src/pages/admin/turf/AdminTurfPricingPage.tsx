@@ -36,7 +36,7 @@ export const AdminTurfPricingPage: React.FC = () => {
   return (
     <div className="max-w-3xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+        <h1 className="type-h1 text-[#0B1628]">
           Turf Pricing &amp; Peak Hours
         </h1>
         <p className="text-xs text-slate-500 mt-0.5">
@@ -46,7 +46,7 @@ export const AdminTurfPricingPage: React.FC = () => {
 
       <form
         onSubmit={handleSave}
-        className="bg-white border border-slate-200 rounded-xl p-6 space-y-5"
+        className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-5"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
@@ -143,7 +143,7 @@ export const AdminTurfPricingPage: React.FC = () => {
           )}
           <button
             type="submit"
-            className="px-5 py-2.5 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700"
+            className="min-h-[44px] px-5 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             Save Turf Pricing
           </button>

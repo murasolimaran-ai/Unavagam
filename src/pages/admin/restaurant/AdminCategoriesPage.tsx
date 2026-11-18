@@ -48,9 +48,9 @@ export const AdminCategoriesPage: React.FC = () => {
 
   return (
     <div className="max-w-4xl space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Menu Categories</h1>
+          <h1 className="type-h1 text-[#0B1628]">Menu Categories</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Add, edit, delete, or reorder food categories shown on the customer menu.
           </p>
@@ -58,13 +58,13 @@ export const AdminCategoriesPage: React.FC = () => {
         <button
           type="button"
           onClick={openAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg hover:bg-orange-700"
+          className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors self-start"
         >
           <Plus className="w-3.5 h-3.5" /> Add Category
         </button>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl divide-y divide-slate-100">
+      <div className="bg-white border border-slate-200 rounded-2xl divide-y divide-slate-100">
         {sorted.map((cat, idx) => {
           const itemCount = foodItems.filter((f) => f.categoryId === cat.id).length;
           return (

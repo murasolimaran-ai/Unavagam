@@ -45,9 +45,9 @@ export const AdminTablesPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Table Management</h1>
+          <h1 className="type-h1 text-[#0B1628]">Table Management</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Manage dining hall &amp; courtyard tables, seating capacities, and live occupancy.
           </p>
@@ -55,7 +55,7 @@ export const AdminTablesPage: React.FC = () => {
         <button
           type="button"
           onClick={openAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#172D4D] text-white text-xs font-semibold rounded-lg hover:bg-[#1e3a63]"
+          className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors self-start"
         >
           <Plus className="w-3.5 h-3.5" /> Add Table
         </button>
@@ -65,7 +65,7 @@ export const AdminTablesPage: React.FC = () => {
         {restaurantTables.map((t) => (
           <div
             key={t.id}
-            className="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between gap-4"
+            className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between gap-4"
           >
             <div>
               <div className="flex items-center justify-between">

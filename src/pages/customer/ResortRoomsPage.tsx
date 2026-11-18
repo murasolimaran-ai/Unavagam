@@ -19,11 +19,13 @@ export const ResortRoomsPage: React.FC = () => {
   const [detailCat, setDetailCat] = useState<ResortRoomCategory | null>(null);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold text-emerald-700">Kaveri Palms Resort</p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-0.5">
+          <p className="text-xs font-semibold text-emerald-700 uppercase tracking-wider">
+            Kaveri Palms Resort
+          </p>
+          <h1 className="type-h1 font-bold text-slate-900 mt-1">
             Explore Rooms &amp; Villas (20 Rooms)
           </h1>
           <p className="text-sm text-slate-600 mt-1">
@@ -32,10 +34,10 @@ export const ResortRoomsPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Date & Guest Bar */}
-        <div className="bg-white border border-slate-200 rounded-xl p-3 flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs">
-            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+        {/* Responsive Date & Guest Bar */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-3 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5">
+          <div className="flex items-center gap-2 text-xs">
+            <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
             <input
               type="date"
               min={today}
@@ -44,7 +46,7 @@ export const ResortRoomsPage: React.FC = () => {
                 setCheckIn(e.target.value);
                 if (e.target.value >= checkOut) setCheckOut(addDays(e.target.value, 1));
               }}
-              className="border border-slate-200 rounded-md px-2 py-1 text-xs"
+              className="flex-1 min-h-[40px] border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs"
             />
             <span className="text-slate-400">to</span>
             <input
@@ -52,15 +54,15 @@ export const ResortRoomsPage: React.FC = () => {
               min={addDays(checkIn, 1)}
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
-              className="border border-slate-200 rounded-md px-2 py-1 text-xs"
+              className="flex-1 min-h-[40px] border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs"
             />
           </div>
-          <div className="flex items-center gap-1.5 text-xs">
-            <Users className="w-3.5 h-3.5 text-slate-400" />
+          <div className="flex items-center gap-2 text-xs">
+            <Users className="w-4 h-4 text-slate-400 shrink-0" />
             <select
               value={adults}
               onChange={(e) => setAdults(Number(e.target.value))}
-              className="border border-slate-200 rounded-md px-2 py-1 text-xs bg-white"
+              className="flex-1 min-h-[40px] border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs bg-white"
             >
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <option key={n} value={n}>
@@ -71,7 +73,7 @@ export const ResortRoomsPage: React.FC = () => {
             <select
               value={children}
               onChange={(e) => setChildren(Number(e.target.value))}
-              className="border border-slate-200 rounded-md px-2 py-1 text-xs bg-white"
+              className="flex-1 min-h-[40px] border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs bg-white"
             >
               {[0, 1, 2, 3].map((n) => (
                 <option key={n} value={n}>
@@ -91,13 +93,13 @@ export const ResortRoomsPage: React.FC = () => {
           return (
             <div
               key={cat.id}
-              className="bg-white border border-slate-200 rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch"
+              className="bg-white border border-slate-200 rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch group"
             >
-              <div className="lg:col-span-4 min-h-[220px] bg-slate-100">
+              <div className="lg:col-span-4 min-h-[220px] bg-slate-100 overflow-hidden">
                 <SmartImage
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
               <div className="lg:col-span-8 p-6 flex flex-col justify-between">
@@ -117,7 +119,7 @@ export const ResortRoomsPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <h2 className="text-xl font-bold text-slate-900 mt-1.5">{cat.name}</h2>
+                  <h2 className="type-h3 font-bold text-slate-900 mt-1.5">{cat.name}</h2>
                   <p className="text-sm text-slate-600 mt-2 leading-relaxed">{cat.description}</p>
 
                   {cat.specialOffer && (
@@ -153,7 +155,7 @@ export const ResortRoomsPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setDetailCat(cat)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+                      className="inline-flex items-center justify-center gap-1.5 min-h-[42px] px-4 py-2 border border-slate-200 text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50"
                     >
                       <Maximize2 className="w-3.5 h-3.5" />
                       <span>View Details</span>
@@ -161,12 +163,12 @@ export const ResortRoomsPage: React.FC = () => {
                     {available > 0 ? (
                       <Link
                         to={`/resort/booking?category=${cat.id}&checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&children=${children}`}
-                        className="px-5 py-2 bg-emerald-700 text-white text-xs font-semibold rounded-lg hover:bg-emerald-800 transition-colors"
+                        className="inline-flex items-center justify-center min-h-[42px] px-5 py-2 bg-emerald-700 text-white text-xs font-semibold rounded-xl hover:bg-emerald-800 transition-colors"
                       >
                         Book Now
                       </Link>
                     ) : (
-                      <span className="px-4 py-2 bg-slate-100 text-slate-400 text-xs font-semibold rounded-lg cursor-not-allowed">
+                      <span className="inline-flex items-center justify-center min-h-[42px] px-4 py-2 bg-slate-100 text-slate-400 text-xs font-semibold rounded-xl cursor-not-allowed">
                         Sold Out
                       </span>
                     )}
@@ -192,7 +194,7 @@ export const ResortRoomsPage: React.FC = () => {
       >
         {detailCat && (
           <div className="space-y-5">
-            <div className="aspect-[16/9] rounded-lg overflow-hidden bg-slate-100">
+            <div className="aspect-[16/9] rounded-xl overflow-hidden bg-slate-100">
               <SmartImage
                 src={detailCat.image}
                 alt={detailCat.name}
@@ -200,7 +202,7 @@ export const ResortRoomsPage: React.FC = () => {
               />
             </div>
             <p className="text-sm text-slate-700 leading-relaxed">{detailCat.description}</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-slate-50 rounded-lg border border-slate-200 text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs">
               <div>
                 <span className="text-slate-500">Weekday Tariff</span>
                 <div className="font-bold font-mono-tabular text-slate-900 mt-0.5">
@@ -221,20 +223,22 @@ export const ResortRoomsPage: React.FC = () => {
               </div>
             </div>
             <div>
-              <h4 className="text-xs font-semibold text-slate-700 mb-2">Room Units &amp; Amenities</h4>
+              <h4 className="text-xs font-semibold text-slate-700 mb-2">
+                Room Units &amp; Amenities
+              </h4>
               <div className="flex flex-wrap gap-2 text-xs text-slate-600 mb-3">
                 {resortRooms
                   .filter((r) => r.categoryId === detailCat.id)
                   .map((r) => (
                     <span
                       key={r.id}
-                      className="px-2.5 py-1 bg-slate-100 rounded border border-slate-200 font-mono-tabular"
+                      className="px-2.5 py-1 bg-slate-100 rounded-lg border border-slate-200 font-mono-tabular"
                     >
                       Room {r.roomNumber} ({r.status})
                     </span>
                   ))}
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs text-slate-700">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                 {detailCat.amenities.map((a) => (
                   <span key={a} className="inline-flex items-center gap-1.5">
                     <BedDouble className="w-3.5 h-3.5 text-emerald-600" /> {a}
@@ -245,7 +249,7 @@ export const ResortRoomsPage: React.FC = () => {
             <div className="pt-3 border-t border-slate-200 flex justify-end">
               <Link
                 to={`/resort/booking?category=${detailCat.id}&checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&children=${children}`}
-                className="px-5 py-2.5 bg-emerald-700 text-white text-xs font-semibold rounded-lg hover:bg-emerald-800"
+                className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 bg-emerald-700 text-white text-xs font-semibold rounded-xl hover:bg-emerald-800"
               >
                 Proceed to Book {detailCat.name}
               </Link>

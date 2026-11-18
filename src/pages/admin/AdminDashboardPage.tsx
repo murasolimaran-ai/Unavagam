@@ -203,19 +203,21 @@ export const AdminDashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header & Date Filters */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      {/* Coastal Executive Header */}
+      <div className="bg-[#0B1628] text-white rounded-2xl p-5 sm:p-6 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-            Unified Executive Overview
-          </h1>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Live metrics derived from Turf, Resort, and Restaurant operations ({formatDateShort(dateBounds.start)} – {formatDateShort(dateBounds.end)})
+          <p className="text-[11px] font-semibold text-[#C89B54] uppercase tracking-wider">
+            Unified Estate Command
+          </p>
+          <h1 className="type-h2 font-bold text-white mt-0.5">Unified Executive Overview</h1>
+          <p className="text-xs text-slate-300 mt-1">
+            Live metrics across Turf, Resort &amp; Restaurant ({formatDateShort(dateBounds.start)} –{' '}
+            {formatDateShort(dateBounds.end)})
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg">
+          <div className="flex flex-wrap items-center gap-1 p-1 bg-white/10 border border-white/10 rounded-xl">
             {(
               [
                 { id: 'today', label: 'Today' },
@@ -229,10 +231,10 @@ export const AdminDashboardPage: React.FC = () => {
                 key={p.id}
                 type="button"
                 onClick={() => setPreset(p.id)}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap ${
+                className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap ${
                   preset === p.id
-                    ? 'bg-[#172D4D] text-white'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-[#C89B54] text-[#0B1628]'
+                    : 'text-slate-200 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {p.label}
@@ -241,7 +243,7 @@ export const AdminDashboardPage: React.FC = () => {
           </div>
 
           {preset === 'custom' && (
-            <div className="flex items-center gap-1.5 bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-xs">
+            <div className="flex items-center gap-1.5 bg-white text-slate-900 rounded-xl px-2.5 py-1.5 text-xs">
               <Calendar className="w-3.5 h-3.5 text-slate-400" />
               <input
                 type="date"
@@ -262,31 +264,31 @@ export const AdminDashboardPage: React.FC = () => {
       </div>
 
       {/* Top 5 KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500 font-medium">Total Revenue</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="text-xl sm:text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
             {formatINR(totalRevenue)}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">Selected range</div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500 font-medium">Total Bookings</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="text-xl sm:text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
             {totalBookings}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">Across all 3 services</div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500 font-medium">Today&apos;s Bookings</div>
-          <div className="text-2xl font-bold font-mono-tabular text-[#172D4D] mt-1">
+          <div className="text-xl sm:text-2xl font-bold font-mono-tabular text-[#0B1628] mt-1">
             {todaysBookingsCount}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">Scheduled for today</div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500 font-medium">Pending Action</div>
-          <div className="text-2xl font-bold font-mono-tabular text-amber-700 mt-1">
+          <div className="text-xl sm:text-2xl font-bold font-mono-tabular text-amber-700 mt-1">
             {pendingBookingsCount}
           </div>
           <div className="text-[11px] text-slate-500 mt-1">Awaiting confirmation</div>
@@ -496,46 +498,68 @@ export const AdminDashboardPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Recent Unified Activity */}
-      <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+      {/* Recent Unified Activity: Mobile Stacked Cards + Desktop Table */}
+      <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
           <h2 className="text-sm font-bold text-slate-900">Recent Activity Across All Services</h2>
           <Link
             to="/admin/bookings"
-            className="text-xs font-semibold text-[#172D4D] hover:underline"
+            className="text-xs font-semibold text-[#0B1628] hover:underline whitespace-nowrap"
           >
             View All Bookings →
           </Link>
         </div>
-        <div className="overflow-x-auto">
+
+        <div className="md:hidden divide-y divide-slate-100">
+          {recentActivity.map((row) => (
+            <div key={row.id} className="p-4 space-y-1.5 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="font-mono-tabular font-bold text-slate-900">{row.id}</span>
+                <StatusLabel status={row.status} />
+              </div>
+              <div className="flex items-center justify-between text-slate-700">
+                <span className="font-medium">{row.customer}</span>
+                <ServiceTag service={row.service} />
+              </div>
+              <div className="flex items-center justify-between pt-1">
+                <span className="font-mono-tabular text-slate-500">{formatDateShort(row.date)}</span>
+                <span className="font-mono-tabular font-bold text-slate-900">
+                  {row.amount > 0 ? formatINR(row.amount) : '—'}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase">
-                <th className="py-2.5 px-4">Booking ID</th>
-                <th className="py-2.5 px-4">Customer</th>
-                <th className="py-2.5 px-4">Service</th>
-                <th className="py-2.5 px-4">Date</th>
-                <th className="py-2.5 px-4 text-right">Amount</th>
-                <th className="py-2.5 px-4">Status</th>
+                <th className="py-3 px-4">Booking ID</th>
+                <th className="py-3 px-4">Customer</th>
+                <th className="py-3 px-4">Service</th>
+                <th className="py-3 px-4">Date</th>
+                <th className="py-3 px-4 text-right">Amount</th>
+                <th className="py-3 px-4">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-xs">
               {recentActivity.map((row) => (
                 <tr key={row.id} className="hover:bg-slate-50/70">
-                  <td className="py-2.5 px-4 font-mono-tabular font-semibold text-slate-900">
+                  <td className="py-3 px-4 font-mono-tabular font-semibold text-slate-900">
                     {row.id}
                   </td>
-                  <td className="py-2.5 px-4 font-medium text-slate-800">{row.customer}</td>
-                  <td className="py-2.5 px-4">
+                  <td className="py-3 px-4 font-medium text-slate-800">{row.customer}</td>
+                  <td className="py-3 px-4">
                     <ServiceTag service={row.service} />
                   </td>
-                  <td className="py-2.5 px-4 font-mono-tabular text-slate-600">
+                  <td className="py-3 px-4 font-mono-tabular text-slate-600">
                     {formatDateShort(row.date)}
                   </td>
-                  <td className="py-2.5 px-4 text-right font-mono-tabular font-semibold">
+                  <td className="py-3 px-4 text-right font-mono-tabular font-semibold">
                     {row.amount > 0 ? formatINR(row.amount) : '—'}
                   </td>
-                  <td className="py-2.5 px-4">
+                  <td className="py-3 px-4">
                     <StatusLabel status={row.status} />
                   </td>
                 </tr>

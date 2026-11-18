@@ -108,12 +108,12 @@ export const RestaurantCheckoutPage: React.FC = () => {
 
     return (
       <div className="max-w-2xl mx-auto px-4 py-12">
-        <div className="bg-white border border-slate-200 rounded-xl p-8">
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm">
           <div className="flex items-center gap-3 text-emerald-700">
-            <CheckCircle2 className="w-7 h-7" />
+            <CheckCircle2 className="w-7 h-7 shrink-0" />
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">Food Order Confirmed</h1>
-              <p className="text-xs text-slate-500">
+              <h1 className="type-h1 text-[#0B1628]">Food Order Confirmed</h1>
+              <p className="text-xs text-slate-500 mt-0.5">
                 Order ID: <span className="font-mono-tabular font-semibold">{liveOrder.id}</span> ·{' '}
                 {liveOrder.fulfilmentType}
               </p>
@@ -161,13 +161,13 @@ export const RestaurantCheckoutPage: React.FC = () => {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               to="/my-bookings"
-              className="flex-1 text-center px-5 py-2.5 bg-[#172D4D] text-white text-xs font-semibold rounded-lg"
+              className="flex-1 min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
             >
               Track in My Bookings
             </Link>
             <Link
               to="/restaurant/menu"
-              className="px-5 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg"
+              className="min-h-[44px] inline-flex items-center justify-center px-5 py-2.5 border border-slate-200 text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
             >
               Order More
             </Link>
@@ -180,12 +180,12 @@ export const RestaurantCheckoutPage: React.FC = () => {
   if (resolvedItems.length === 0) {
     return (
       <div className="max-w-xl mx-auto px-4 py-16 text-center">
-        <div className="bg-white border border-slate-200 rounded-xl p-8">
+        <div className="bg-white border border-slate-200 rounded-2xl p-8">
           <ShoppingBag className="w-8 h-8 text-slate-300 mx-auto" />
-          <h1 className="text-lg font-bold text-slate-900 mt-3">No items to checkout</h1>
+          <h1 className="type-h2 text-[#0B1628] mt-3">No items to checkout</h1>
           <Link
             to="/restaurant/menu"
-            className="inline-block mt-4 px-5 py-2 bg-orange-600 text-white text-xs font-semibold rounded-lg"
+            className="min-h-[44px] inline-flex items-center justify-center mt-4 px-5 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D]"
           >
             Return to Menu
           </Link>
@@ -195,14 +195,14 @@ export const RestaurantCheckoutPage: React.FC = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       <div className="mb-6">
-        <p className="text-xs font-semibold text-orange-700">Kaveri Courtyard Kitchen</p>
-        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Food Order Checkout</h1>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C89B54]">Kaveri Courtyard Kitchen</p>
+        <h1 className="type-h1 text-[#0B1628] mt-1">Food Order Checkout</h1>
       </div>
 
       {errorMsg && (
-        <div className="mb-6 p-3.5 bg-rose-50 border border-rose-200 rounded-lg flex items-center gap-2 text-xs text-rose-800">
+        <div className="mb-6 p-3.5 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2 text-xs text-rose-800">
           <AlertCircle className="w-4 h-4 shrink-0" />
           <span>{errorMsg}</span>
         </div>
@@ -211,7 +211,7 @@ export const RestaurantCheckoutPage: React.FC = () => {
       <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-8 space-y-6">
           {/* Fulfilment Type */}
-          <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+          <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
             <h2 className="text-base font-bold text-slate-900">1. Select Order Fulfilment</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {(
@@ -394,7 +394,7 @@ export const RestaurantCheckoutPage: React.FC = () => {
         </div>
 
         {/* Summary */}
-        <aside className="lg:col-span-4 bg-white border border-slate-200 rounded-xl p-6 space-y-4 sticky top-24">
+        <aside className="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4 lg:sticky lg:top-24">
           <h2 className="text-base font-bold text-slate-900">Order Summary</h2>
           <div className="space-y-2 text-xs max-h-48 overflow-y-auto border-b border-slate-200 pb-3">
             {resolvedItems.map((r) => (
@@ -419,7 +419,7 @@ export const RestaurantCheckoutPage: React.FC = () => {
               value={couponCode}
               onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
               placeholder="FEAST100"
-              className="w-full px-3 py-1.5 border border-slate-200 rounded-lg text-xs font-mono-tabular uppercase"
+              className="w-full min-h-[40px] px-3 py-1.5 border border-slate-200 rounded-xl text-xs font-mono-tabular uppercase"
             />
             {couponCode && couponRes && (
               <p className={`text-[11px] mt-1 ${couponRes.valid ? 'text-emerald-700' : 'text-rose-600'}`}>
@@ -457,7 +457,7 @@ export const RestaurantCheckoutPage: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white text-sm font-semibold rounded-lg transition-colors"
+            className="w-full min-h-[48px] py-3 bg-[#0B1628] hover:bg-[#172D4D] text-white text-sm font-semibold rounded-xl transition-colors"
           >
             Place Order ({formatINR(total)})
           </button>

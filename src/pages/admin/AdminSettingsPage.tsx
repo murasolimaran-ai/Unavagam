@@ -27,7 +27,7 @@ export const AdminSettingsPage: React.FC = () => {
     <div className="max-w-4xl space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Business &amp; Platform Settings
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -37,7 +37,7 @@ export const AdminSettingsPage: React.FC = () => {
         <button
           type="button"
           onClick={handleReset}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-rose-200 text-rose-700 text-xs font-semibold rounded-lg hover:bg-rose-50 self-start"
+          className="min-h-[40px] inline-flex items-center gap-1.5 px-3.5 py-2 border border-rose-200 text-rose-700 text-xs font-semibold rounded-xl hover:bg-rose-50 self-start"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset Demo Data</span>
@@ -45,7 +45,7 @@ export const AdminSettingsPage: React.FC = () => {
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
-        <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
           <h2 className="text-sm font-bold text-slate-900">Business Profile &amp; Contact</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -96,7 +96,7 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
           <h2 className="text-sm font-bold text-slate-900">
             Operating Hours, Tax &amp; Cancellation Policies
           </h2>
@@ -203,7 +203,7 @@ export const AdminSettingsPage: React.FC = () => {
           )}
           <button
             type="submit"
-            className="px-6 py-2.5 bg-[#172D4D] text-white text-xs font-semibold rounded-lg hover:bg-[#1e3a63]"
+            className="min-h-[44px] px-6 py-2.5 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             Save All Settings
           </button>

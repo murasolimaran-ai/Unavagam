@@ -14,7 +14,7 @@ export const AdminNotificationsPage: React.FC = () => {
     <div className="max-w-4xl space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h1 className="type-h1 text-[#0B1628]">
             Unified Notifications
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
@@ -22,13 +22,13 @@ export const AdminNotificationsPage: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-lg">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-1 p-1 bg-white border border-slate-200 rounded-xl">
             <button
               type="button"
               onClick={() => setFilter('all')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                filter === 'all' ? 'bg-[#172D4D] text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                filter === 'all' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               All ({notifications.length})
@@ -36,8 +36,8 @@ export const AdminNotificationsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setFilter('unread')}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md ${
-                filter === 'unread' ? 'bg-[#172D4D] text-white' : 'text-slate-600'
+              className={`min-h-[36px] px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                filter === 'unread' ? 'bg-[#0B1628] text-white' : 'text-slate-600 hover:bg-slate-100'
               }`}
             >
               Unread ({notifications.filter((n) => !n.read).length})
@@ -46,7 +46,7 @@ export const AdminNotificationsPage: React.FC = () => {
           <button
             type="button"
             onClick={markAllNotificationsRead}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-slate-200 bg-white text-xs font-semibold text-slate-700 rounded-lg hover:bg-slate-50"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-3.5 py-2 border border-slate-200 bg-white text-xs font-semibold text-slate-700 rounded-xl hover:bg-slate-50"
           >
             <CheckCheck className="w-3.5 h-3.5" />
             <span>Mark All Read</span>
@@ -54,7 +54,7 @@ export const AdminNotificationsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-slate-200 rounded-xl divide-y divide-slate-100">
+      <div className="bg-white border border-slate-200 rounded-2xl divide-y divide-slate-100">
         {list.length === 0 ? (
           <div className="p-10 text-center text-xs text-slate-500">
             <Bell className="w-7 h-7 text-slate-300 mx-auto mb-2" />

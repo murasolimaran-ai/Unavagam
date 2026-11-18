@@ -39,22 +39,22 @@ export const AdminTurfOverviewPage: React.FC = () => {
           <p className="text-xs font-semibold text-blue-700 inline-flex items-center gap-1.5">
             <Trophy className="w-3.5 h-3.5" /> Single Turf Management
           </p>
-          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">{turfConfig.name}</h1>
+          <h1 className="type-h1 text-[#0B1628]">{turfConfig.name}</h1>
           <p className="text-xs text-slate-500 mt-0.5">
             {turfConfig.dimensions} · {turfConfig.operatingHours}
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <Link
             to="/admin/turf/calendar"
-            className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded-lg hover:bg-blue-700"
+            className="min-h-[40px] inline-flex items-center gap-1.5 px-4 py-2 bg-[#0B1628] text-white text-xs font-semibold rounded-xl hover:bg-[#172D4D] transition-colors"
           >
             <Calendar className="w-3.5 h-3.5" />
             <span>Open Slot Calendar</span>
           </Link>
           <Link
             to="/admin/turf/pricing"
-            className="px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-lg hover:bg-slate-50"
+            className="min-h-[40px] inline-flex items-center px-4 py-2 border border-slate-200 bg-white text-slate-700 text-xs font-medium rounded-xl hover:bg-slate-50 transition-colors"
           >
             Edit Pricing
           </Link>
@@ -63,33 +63,33 @@ export const AdminTurfOverviewPage: React.FC = () => {
 
       {/* 5 Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Bookings</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {todaysBookings.length}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Today&apos;s Revenue</div>
-          <div className="text-2xl font-bold font-mono-tabular text-blue-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-blue-700 mt-1">
             {formatINR(todaysRevenue)}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Available Slots (Today)</div>
-          <div className="text-2xl font-bold font-mono-tabular text-emerald-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-emerald-700 mt-1">
             {availableToday}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
           <div className="text-xs text-slate-500">Booked Slots (Today)</div>
-          <div className="text-2xl font-bold font-mono-tabular text-slate-900 mt-1">
+          <div className="type-h2 font-mono-tabular text-[#0B1628] mt-1">
             {bookedToday}
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-xl p-4 col-span-2 lg:col-span-1">
+        <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 col-span-2 lg:col-span-1">
           <div className="text-xs text-slate-500">Pending Bookings</div>
-          <div className="text-2xl font-bold font-mono-tabular text-amber-700 mt-1">
+          <div className="type-h2 font-mono-tabular text-amber-700 mt-1">
             {pendingCount}
           </div>
         </div>
@@ -97,7 +97,7 @@ export const AdminTurfOverviewPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Today's Slot Feed */}
-        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-xl p-5">
+        <div className="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-900 mb-3">
             Today&apos;s Slot Schedule ({formatDateShort(today)})
           </h2>
@@ -125,7 +125,7 @@ export const AdminTurfOverviewPage: React.FC = () => {
         </div>
 
         {/* Revenue Trend */}
-        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-between">
+        <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between">
           <div>
             <h2 className="text-sm font-bold text-slate-900">7-Day Turf Revenue Trend</h2>
             <p className="text-xs text-slate-500 mb-4">Daily confirmed &amp; completed slot revenue</p>
