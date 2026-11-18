@@ -1,0 +1,6 @@
+{
+  "name": "Kaveri Palms Estate",
+  "description": "Unified hospitality and recreation booking platform for Turf Booking, Resort Room Booking, and Restaurant Ordering & Table Reservations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

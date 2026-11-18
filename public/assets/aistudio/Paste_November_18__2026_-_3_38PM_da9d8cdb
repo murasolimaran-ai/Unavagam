@@ -1,0 +1,1510 @@
+# PROJECT: UNIFIED HOSPITALITY & RECREATION BOOKING PLATFORM
+
+## 1. YOUR ROLE
+
+Act as a Senior Product Designer, UI/UX Architect, Full-Stack Developer, and SaaS Product Engineer.
+
+Build a complete, polished, fully interactive, client-presentation-ready web application prototype for a business that operates three services under one brand:
+
+1. Turf Booking
+2. Resort Room Booking
+3. Restaurant & Food Ordering
+
+The system must have two main interfaces:
+
+- Customer-facing website
+- Unified Admin Dashboard
+
+IMPORTANT: This is not a static design or a collection of screenshots. Build a working, navigable, interactive web application with realistic sample data, functional forms, booking flows, dashboards, filters, and management operations.
+
+The prototype should be polished enough to demonstrate to a real business client and secure project approval.
+
+---
+
+# 2. CORE BUSINESS CONCEPT
+
+One business operates three different services at one location.
+
+Each service has its own customer experience and booking logic.
+
+However, the business owner manages everything through ONE unified admin panel.
+
+Core architecture:
+
+- One business brand
+- One customer website
+- Three independent service modules
+- One admin authentication system
+- One unified admin dashboard
+- One shared customer database
+- One shared payment management system
+- Independent booking and inventory management
+- Combined analytics and reports
+
+Do not create three separate websites or three separate admin panels.
+
+---
+
+# 3. TECHNOLOGY REQUIREMENTS
+
+Build using:
+
+- React
+- TypeScript
+- Tailwind CSS
+- Lucide React icons
+- Modern reusable components
+- React Router or equivalent routing
+- Local state management
+- LocalStorage persistence for demo data
+- Responsive layouts
+
+Use clean component architecture.
+
+Organize code into reusable components, pages, layouts, and service-specific modules.
+
+The prototype must run without requiring an external backend.
+
+Use realistic mock data and simulate payment success.
+
+All demo operations must work locally.
+
+Do not require API keys or external credentials.
+
+---
+
+# 4. DESIGN SYSTEM & UI/UX DIRECTION
+
+Design style: Premium Minimal Modern SaaS + Luxury Hospitality.
+
+Visual direction:
+
+- Clean and minimal interface
+- Professional typography
+- Generous whitespace
+- Soft neutral backgrounds
+- White surfaces
+- Subtle borders
+- Small, consistent shadows
+- Rounded corners
+- Clear visual hierarchy
+- High-quality photography
+- Consistent iconography
+- Professional data tables
+- Elegant charts
+- Smooth micro-interactions
+
+Suggested colors:
+
+- Primary: Deep Navy (#172D4D)
+- Secondary: Slate (#64748B)
+- Background: #F8FAFC
+- Surface: #FFFFFF
+- Turf accent: Blue
+- Resort accent: Green
+- Restaurant accent: Warm Orange
+- Success: Green
+- Warning: Amber
+- Error: Red
+
+Typography:
+
+- Use Inter or a similar modern sans-serif font.
+- Strong, clear headings.
+- Readable labels.
+- Consistent font sizes.
+
+IMPORTANT UI RULES:
+
+- Avoid clutter.
+- Avoid unnecessary paragraphs.
+- Avoid oversized cards.
+- Avoid excessive gradients.
+- Avoid decorative elements without purpose.
+- Avoid unnecessary animations.
+- Do not make every section look like a card.
+- Use tables, calendars, lists, tabs, and compact statistics where appropriate.
+- Use concise labels instead of lengthy explanatory text.
+- Keep customer pages visually engaging.
+- Keep admin pages information-dense but clean.
+
+The entire application must be responsive for desktop, tablet, and mobile.
+
+---
+
+# 5. APPLICATION STRUCTURE
+
+Create two separate application layouts.
+
+## A. CUSTOMER WEBSITE
+
+Routes:
+
+- /
+- /turf
+- /turf/booking
+- /resort
+- /resort/rooms
+- /resort/booking
+- /restaurant
+- /restaurant/menu
+- /restaurant/cart
+- /restaurant/checkout
+- /restaurant/table-booking
+- /my-bookings
+- /profile
+
+## B. ADMIN DASHBOARD
+
+Routes:
+
+- /admin/login
+- /admin/dashboard
+- /admin/turf
+- /admin/turf/bookings
+- /admin/turf/calendar
+- /admin/resort
+- /admin/resort/bookings
+- /admin/resort/rooms
+- /admin/resort/availability
+- /admin/resort/check-in-out
+- /admin/restaurant
+- /admin/restaurant/orders
+- /admin/restaurant/menu
+- /admin/restaurant/categories
+- /admin/restaurant/tables
+- /admin/bookings
+- /admin/customers
+- /admin/payments
+- /admin/reports
+- /admin/coupons
+- /admin/notifications
+- /admin/staff
+- /admin/settings
+
+---
+
+# 6. CUSTOMER WEBSITE – DETAILED REQUIREMENTS
+
+## 6.1 HOME PAGE
+
+Create an attractive hospitality business landing page.
+
+Header:
+
+- Business logo and name
+- Home
+- Turf
+- Resort
+- Restaurant
+- My Bookings
+- Login / Profile
+- Cart icon
+
+Hero section:
+
+- Premium resort or property photography
+- Attractive headline
+- Short subtitle
+- Book Now CTA
+
+Service selection section:
+
+Three visually distinct service cards.
+
+1. Turf
+   - Turf image
+   - Book Your Slot
+   - View Availability
+
+2. Resort
+   - Resort image
+   - Explore Rooms
+   - Book Your Stay
+
+3. Restaurant
+   - Restaurant image
+   - Order Food
+   - Reserve a Table
+
+Additional homepage sections:
+
+- Featured resort rooms
+- Popular food items
+- Turf booking promotion
+- Special offers
+- Customer testimonials
+- Contact information
+- Footer with business details
+
+Each service card must navigate to its respective service page.
+
+## 6.2 TURF BOOKING MODULE
+
+IMPORTANT: There is ONLY ONE TURF GROUND in this business.
+
+Do not create multiple turf grounds.
+
+The customer must be able to book different available time slots for the same turf.
+
+Turf page:
+
+- Premium turf photography
+- Turf name
+- Turf description
+- Ground specifications
+- Operating hours
+- Pricing
+- Available booking dates
+- Book Now button
+
+Booking flow:
+
+STEP 1: Select date.
+
+STEP 2: Select available time slot.
+
+STEP 3: Select duration if supported.
+
+STEP 4: Display booking price.
+
+STEP 5: Enter customer details.
+
+STEP 6: Review booking.
+
+STEP 7: Simulate payment.
+
+STEP 8: Show booking confirmation.
+
+Create an interactive time-slot selection interface.
+
+Sample slots:
+
+- 06:00 AM – 07:00 AM
+- 07:00 AM – 08:00 AM
+- 08:00 AM – 09:00 AM
+- 09:00 AM – 10:00 AM
+- 04:00 PM – 05:00 PM
+- 05:00 PM – 06:00 PM
+- 06:00 PM – 07:00 PM
+- 07:00 PM – 08:00 PM
+- 08:00 PM – 09:00 PM
+- 09:00 PM – 10:00 PM
+
+Slot statuses:
+
+- Available
+- Booked
+- Blocked
+
+Booked slots must not be selectable.
+
+After successful booking, the slot must become unavailable in the demo state.
+
+Prevent double booking.
+
+Turf admin must be able to block or unblock slots.
+
+---
+
+## 6.3 RESORT ROOM BOOKING MODULE
+
+IMPORTANT: The resort has MULTIPLE ROOMS.
+
+Do not implement it as a single-room property.
+
+Create different room categories and multiple individual rooms under each category.
+
+Sample room categories:
+
+1. Standard Room
+2. Deluxe Room
+3. Premium Room
+4. Family Room
+5. Private Pool Villa
+
+Sample room inventory:
+
+- Standard: 5 rooms
+- Deluxe: 5 rooms
+- Premium: 4 rooms
+- Family: 3 rooms
+- Private Pool Villa: 3 rooms
+
+Total sample inventory: 20 rooms.
+
+Room listing page:
+
+- Room photography
+- Room category
+- Room description
+- Capacity
+- Bed type
+- Amenities
+- Nightly price
+- Availability
+- View Details
+- Book Now
+
+Booking flow:
+
+STEP 1: Select check-in date.
+
+STEP 2: Select check-out date.
+
+STEP 3: Select adults and children.
+
+STEP 4: Search availability.
+
+STEP 5: Display available room categories and inventory.
+
+STEP 6: Select room category and quantity.
+
+STEP 7: Enter guest details.
+
+STEP 8: Display complete price breakdown.
+
+STEP 9: Simulate payment.
+
+STEP 10: Display booking confirmation.
+
+Room booking must support:
+
+- Multiple room categories
+- Multiple individual rooms
+- Multiple room reservations
+- Date-based availability
+- Check-in and check-out
+- Adult and child count
+- Extra bed charges
+- Weekday pricing
+- Weekend pricing
+- Seasonal pricing
+- Additional amenities
+- Cancellation status
+
+IMPORTANT BOOKING LOGIC:
+
+A room must not be booked by two customers for overlapping dates.
+
+Calculate availability using check-in and check-out dates.
+
+The room inventory must automatically update after confirmed bookings.
+
+---
+
+## 6.4 RESTAURANT MODULE
+
+The restaurant supports BOTH:
+
+A. Online Food Ordering
+B. Table Reservations
+
+Customers must be able to choose either service.
+
+### A. ONLINE FOOD ORDERING
+
+Restaurant page:
+
+- Restaurant cover image
+- Restaurant name
+- Operating hours
+- Food categories
+- Featured dishes
+- Menu items
+- Food photography
+
+Food categories:
+
+- Breakfast
+- Starters
+- Main Course
+- Biryani
+- Vegetarian
+- Non-Vegetarian
+- Desserts
+- Beverages
+
+Food item details:
+
+- Food image
+- Item name
+- Description
+- Price
+- Veg / Non-Veg indicator
+- Availability
+- Quantity controls
+- Add to Cart
+
+Cart functionality:
+
+- Add items
+- Remove items
+- Update quantity
+- Calculate subtotal
+- Calculate taxes
+- Apply coupon
+- Calculate final amount
+
+### FOOD ORDER FULFILMENT
+
+Support all three fulfilment types:
+
+1. Dine-in
+2. Takeaway / Pickup
+3. Home Delivery
+
+Dine-in:
+
+- Select dine-in.
+- Select table if applicable.
+- Enter customer details.
+- Place food order.
+- Display order confirmation.
+
+Takeaway:
+
+- Select pickup.
+- Choose pickup time.
+- Enter contact details.
+- Place order.
+- Display pickup confirmation.
+
+Home Delivery:
+
+- Select delivery.
+- Enter delivery address.
+- Enter phone number.
+- Calculate delivery fee.
+- Place order.
+- Display delivery confirmation.
+
+### FOOD ORDER STATUS
+
+- New
+- Accepted
+- Preparing
+- Ready
+- Out for Delivery
+- Completed
+- Cancelled
+
+Admin must be able to update order statuses.
+
+Customer must be able to track the order status.
+
+### B. TABLE RESERVATION
+
+Create a separate table reservation experience.
+
+Reservation flow:
+
+STEP 1: Select date.
+
+STEP 2: Select preferred time.
+
+STEP 3: Select number of guests.
+
+STEP 4: Display available tables.
+
+STEP 5: Select table.
+
+STEP 6: Enter customer details.
+
+STEP 7: Confirm reservation.
+
+STEP 8: Display reservation confirmation.
+
+Sample tables:
+
+- Table 01 – 2 Seats
+- Table 02 – 2 Seats
+- Table 03 – 4 Seats
+- Table 04 – 4 Seats
+- Table 05 – 6 Seats
+- Table 06 – 8 Seats
+
+Table statuses:
+
+- Available
+- Reserved
+- Occupied
+- Maintenance
+
+Prevent conflicting reservations for the same table and time.
+
+Allow admin to manage tables and reservations.
+
+IMPORTANT:
+
+Food ordering and table reservation must be independent workflows.
+
+A customer should be able to order food without reserving a table.
+
+A customer should be able to reserve a table without ordering food.
+
+Also support ordering food while dining in.
+
+---
+
+# 7. CUSTOMER ACCOUNT & MY BOOKINGS
+
+Create a customer account experience.
+
+Features:
+
+- Register
+- Login
+- Profile
+- Name
+- Email
+- Phone
+- Saved addresses
+- Booking history
+- Payment history
+
+My Bookings page must combine:
+
+- Turf bookings
+- Resort bookings
+- Restaurant food orders
+- Table reservations
+
+Use clear service badges to distinguish records.
+
+Booking statuses:
+
+- Pending
+- Confirmed
+- Completed
+- Cancelled
+
+Each booking must have:
+
+- Unique booking ID
+- Service name
+- Date and time
+- Customer details
+- Price
+- Payment status
+- Booking status
+- View Details
+- Cancellation option when eligible
+
+---
+
+# 8. ADMIN DASHBOARD – MAIN ARCHITECTURE
+
+This is the most important part of the project.
+
+Create ONE unified admin dashboard.
+
+There must be ONE admin login and ONE admin account with full access to all three service modules.
+
+The admin must never need to log out and log in separately to manage different services.
+
+## 8.1 ADMIN LAYOUT
+
+Desktop layout:
+
+- Fixed left sidebar
+- Top navigation bar
+- Main content area
+- Notification icon
+- Admin profile
+- Search
+- Date filters
+
+Sidebar structure:
+
+OVERVIEW
+- Dashboard
+
+SERVICE MANAGEMENT
+
+TURF MANAGEMENT
+- Turf Overview
+- Bookings
+- Slot Calendar
+- Pricing
+- Offers
+
+RESORT MANAGEMENT
+- Resort Overview
+- Room Bookings
+- Room Inventory
+- Room Availability
+- Check-in / Check-out
+- Pricing
+
+RESTAURANT MANAGEMENT
+- Restaurant Overview
+- Food Orders
+- Menu Management
+- Categories
+- Table Management
+- Table Reservations
+- Kitchen Management
+
+COMMON MANAGEMENT
+- All Bookings
+- Customers
+- Payments & Transactions
+- Coupons & Offers
+- Notifications
+- Reports & Analytics
+- Staff Management
+- Settings
+
+The three service groups must be visually distinguishable using subtle service-specific accent colors.
+
+Use expandable sidebar sections.
+
+On mobile, use a collapsible sidebar or drawer.
+
+---
+
+# 9. ADMIN MAIN DASHBOARD
+
+The first page after admin login must be the unified overview dashboard.
+
+Dashboard must show data from all three services.
+
+TOP STATISTICS:
+
+- Total Revenue
+- Total Bookings
+- Today's Bookings
+- Pending Bookings
+- Total Customers
+
+SERVICE PERFORMANCE:
+
+Show separate statistics for:
+
+Turf:
+- Revenue
+- Total Bookings
+- Available Slots
+- Occupied Slots
+
+Resort:
+- Revenue
+- Total Room Bookings
+- Occupied Rooms
+- Available Rooms
+- Today's Check-ins
+- Today's Check-outs
+
+Restaurant:
+- Revenue
+- Total Food Orders
+- Preparing Orders
+- Ready Orders
+- Table Reservations
+
+CHARTS:
+
+- Overall Revenue Chart
+- Service-wise Revenue Comparison
+- Booking Trends
+- Monthly Performance
+
+RECENT ACTIVITY:
+
+Display recent bookings and orders from all services.
+
+Each record must show:
+
+- Booking ID
+- Customer
+- Service
+- Date
+- Amount
+- Status
+
+Provide a date filter:
+
+- Today
+- Yesterday
+- Last 7 Days
+- Last 30 Days
+- Custom Range
+
+All statistics must be derived from the same demo data used by the service modules.
+
+Do not hardcode unrelated numbers into individual dashboard widgets.
+
+---
+
+# 10. TURF ADMIN MODULE
+
+Create a dedicated Turf Management dashboard.
+
+Statistics:
+
+- Today's Bookings
+- Today's Revenue
+- Available Slots
+- Booked Slots
+- Pending Bookings
+
+Pages:
+
+### Turf Overview
+
+- Turf information
+- Operating hours
+- Pricing
+- Today's bookings
+- Booking trends
+
+### Turf Bookings
+
+Table columns:
+
+- Booking ID
+- Customer
+- Phone
+- Date
+- Time Slot
+- Duration
+- Amount
+- Payment Status
+- Booking Status
+- Actions
+
+Actions:
+
+- View
+- Confirm
+- Cancel
+- Mark Completed
+
+### Turf Calendar
+
+Create an interactive calendar.
+
+- Daily view
+- Weekly view
+- Date navigation
+- Time-slot grid
+- Available slots
+- Booked slots
+- Blocked slots
+
+Admin actions:
+
+- Block a slot
+- Unblock a slot
+- View booking
+- Create manual booking
+
+### Turf Pricing
+
+- Hourly price
+- Weekday price
+- Weekend price
+- Peak-hour price
+- Special offers
+
+Allow admin to edit prices.
+
+---
+
+# 11. RESORT ADMIN MODULE
+
+Create a dedicated Resort Management dashboard.
+
+Statistics:
+
+- Total Rooms
+- Occupied Rooms
+- Available Rooms
+- Today's Check-ins
+- Today's Check-outs
+- Total Revenue
+
+### Room Management
+
+Display all room categories and individual rooms.
+
+Admin can:
+
+- Add room category
+- Edit room category
+- Add individual room
+- Edit room details
+- Change room status
+- Upload or change room images
+- Manage amenities
+- Set room pricing
+
+Room statuses:
+
+- Available
+- Occupied
+- Reserved
+- Cleaning
+- Maintenance
+
+### Room Bookings
+
+Table columns:
+
+- Booking ID
+- Customer
+- Room Category
+- Room Number
+- Check-in
+- Check-out
+- Guests
+- Total Amount
+- Payment Status
+- Booking Status
+
+Actions:
+
+- View Details
+- Confirm
+- Cancel
+- Assign Room
+- Check-in
+- Check-out
+
+### Room Availability
+
+Create a date-based room inventory calendar.
+
+Display room categories and available inventory for each date.
+
+Prevent overlapping confirmed reservations.
+
+### Check-in / Check-out
+
+Create a dedicated management page.
+
+Sections:
+
+- Today's Arrivals
+- Currently Staying
+- Today's Departures
+
+Actions:
+
+- Confirm arrival
+- Check-in
+- Check-out
+- View guest details
+
+### Resort Pricing
+
+- Weekday pricing
+- Weekend pricing
+- Seasonal pricing
+- Extra bed pricing
+- Special offers
+
+---
+
+# 12. RESTAURANT ADMIN MODULE
+
+Create a dedicated Restaurant Management dashboard.
+
+Statistics:
+
+- Today's Orders
+- Today's Revenue
+- New Orders
+- Preparing Orders
+- Ready Orders
+- Table Reservations
+
+### Restaurant Overview
+
+- Sales summary
+- Order trends
+- Popular dishes
+- Live orders
+- Table reservation summary
+
+### Food Orders
+
+Create a live order management interface.
+
+Display:
+
+- Order ID
+- Customer
+- Items
+- Quantity
+- Fulfilment Type
+- Order Time
+- Total Amount
+- Payment Status
+- Order Status
+
+Separate filters:
+
+- All Orders
+- Dine-in
+- Pickup
+- Home Delivery
+
+Actions:
+
+- Accept Order
+- Reject Order
+- Start Preparing
+- Mark Ready
+- Out for Delivery
+- Complete Order
+- Cancel Order
+
+### Kitchen Management
+
+Create a Kitchen Order Display (KDS).
+
+Use clear order cards.
+
+Each order must show:
+
+- Order number
+- Items
+- Quantities
+- Customizations
+- Fulfilment type
+- Time received
+- Current status
+
+Allow staff to update preparation status.
+
+### Menu Management
+
+Admin must be able to:
+
+- Add food item
+- Edit food item
+- Delete food item
+- Upload food image
+- Set price
+- Select category
+- Set veg / non-veg
+- Toggle availability
+- Add descriptions
+- Add item customizations
+
+### Category Management
+
+- Add category
+- Edit category
+- Delete category
+- Reorder categories
+
+### Table Management
+
+Manage restaurant tables.
+
+Each table must have:
+
+- Table number
+- Seating capacity
+- Status
+- Availability
+
+Admin can:
+
+- Add table
+- Edit table
+- Change status
+- Mark occupied
+- Mark available
+- Mark maintenance
+
+### Table Reservations
+
+Display:
+
+- Reservation ID
+- Customer
+- Phone
+- Date
+- Time
+- Number of guests
+- Table number
+- Status
+
+Actions:
+
+- Confirm
+- Assign table
+- Cancel
+- Mark seated
+- Mark completed
+
+---
+
+# 13. ALL BOOKINGS – UNIFIED VIEW
+
+Create a common booking management page.
+
+This page must combine records from:
+
+- Turf Bookings
+- Resort Bookings
+- Restaurant Food Orders
+- Restaurant Table Reservations
+
+Create filters:
+
+SERVICE:
+- All
+- Turf
+- Resort
+- Restaurant
+
+BOOKING TYPE:
+- Slot Booking
+- Room Booking
+- Food Order
+- Table Reservation
+
+STATUS:
+- All
+- Pending
+- Confirmed
+- Preparing
+- Completed
+- Cancelled
+
+PAYMENT:
+- Paid
+- Pending
+- Failed
+- Refunded
+
+OTHER FILTERS:
+- Date range
+- Customer
+- Booking ID
+
+Use a professional searchable data table.
+
+Provide booking details in a side panel or modal.
+
+Allow admin to update eligible statuses.
+
+All booking records must be sourced from the individual service modules.
+
+---
+
+# 14. CUSTOMER MANAGEMENT
+
+Create a common customer management module.
+
+Customer table:
+
+- Customer ID
+- Name
+- Phone
+- Email
+- Total Bookings
+- Total Spent
+- Last Booking
+- Registration Date
+
+Customer detail page:
+
+- Personal details
+- Booking history
+- Food order history
+- Resort stays
+- Turf bookings
+- Payment history
+
+Admin can view and edit customer information.
+
+---
+
+# 15. PAYMENTS & TRANSACTIONS
+
+Create one shared payment management module.
+
+Display:
+
+- Transaction ID
+- Booking ID
+- Customer
+- Service
+- Payment Method
+- Amount
+- Transaction Date
+- Payment Status
+
+Support demo payment methods:
+
+- UPI
+- Credit / Debit Card
+- Cash
+
+Payment statuses:
+
+- Paid
+- Pending
+- Failed
+- Refunded
+
+Create payment summary statistics.
+
+Simulate payment flows. Do not claim actual real-money transactions.
+
+---
+
+# 16. REPORTS & ANALYTICS
+
+Create a common reports section.
+
+Overall reports:
+
+- Total Revenue
+- Total Bookings
+- Customer Growth
+- Booking Trends
+
+Service-specific reports:
+
+Turf:
+- Slot occupancy
+- Revenue
+- Popular booking times
+
+Resort:
+- Room occupancy
+- Revenue
+- Check-in trends
+- Room category performance
+
+Restaurant:
+- Food sales
+- Popular menu items
+- Order volume
+- Dine-in vs Takeaway vs Delivery
+
+Allow date filtering.
+
+Create visually clean charts and tables.
+
+---
+
+# 17. COUPONS & OFFERS
+
+Create a common coupon management page.
+
+Admin can:
+
+- Create coupon
+- Set discount percentage
+- Set fixed discount
+- Minimum order amount
+- Maximum discount
+- Validity period
+- Select applicable services
+- Activate / deactivate
+
+Coupon applicability:
+
+- Turf
+- Resort
+- Restaurant
+- All Services
+
+---
+
+# 18. NOTIFICATIONS
+
+Create a unified notifications page.
+
+Notification types:
+
+- New Turf Booking
+- New Resort Booking
+- New Food Order
+- New Table Reservation
+- Payment Success
+- Booking Cancellation
+
+Show unread and read notifications.
+
+Use simulated notifications for the prototype.
+
+---
+
+# 19. STAFF & ADMIN SETTINGS
+
+Create a staff management page.
+
+Prepare role structures for future use:
+
+- Super Admin
+- Turf Manager
+- Resort Manager
+- Restaurant Manager
+- Reception Staff
+- Kitchen Staff
+
+The current demo must use one Super Admin account with full permissions.
+
+Create settings pages for:
+
+- Business Profile
+- Business Contact
+- Operating Hours
+- Service Configuration
+- Booking Policies
+- Cancellation Policies
+- Tax Settings
+- Payment Settings
+
+---
+
+# 20. SAMPLE DATA
+
+Create realistic demo data for all modules.
+
+Use Indian business context.
+
+Currency: INR (₹).
+
+Timezone: Asia/Kolkata.
+
+Use Indian names, phone number formats, food items, and realistic prices.
+
+Sample customers:
+
+- Arun Kumar
+- Siva Prakash
+- Karthik
+- Ravi
+- Manoj
+- Priya
+- Divya
+- Kumar
+
+Sample food menu:
+
+- Chicken Biryani
+- Mutton Biryani
+- Veg Meals
+- Chicken Fried Rice
+- Paneer Butter Masala
+- Dosa
+- Parotta
+- Fresh Lime Juice
+- Ice Cream
+
+Use realistic prices.
+
+Create sample bookings across different dates and statuses.
+
+Create at least:
+
+- 12 Turf booking records
+- 15 Resort booking records
+- 20 Food orders
+- 8 Table reservations
+- 20 Customer records
+- 20 Payment records
+
+Ensure all modules reference consistent customers, booking IDs, payments, and statuses.
+
+---
+
+# 21. INTERACTION & FUNCTIONAL REQUIREMENTS
+
+This section is extremely important.
+
+Every major button must work.
+
+Customer functionality:
+
+- Navigation
+- Service selection
+- Date selection
+- Slot selection
+- Room selection
+- Guest selection
+- Food selection
+- Cart management
+- Checkout
+- Table reservation
+- Booking confirmation
+- My Bookings
+- Profile management
+
+Admin functionality:
+
+- Sidebar navigation
+- Expandable menus
+- Search
+- Filters
+- Date selection
+- Add / Edit / Delete operations
+- Booking status updates
+- Room inventory updates
+- Slot availability updates
+- Menu management
+- Order management
+- Table management
+- Pricing updates
+- Customer management
+- Reports
+
+Data persistence:
+
+Use LocalStorage so that demo changes remain after page refresh.
+
+Use one shared state/data layer for customer and admin interfaces.
+
+CRITICAL:
+
+If a customer makes a Turf booking, it must appear in the Turf Admin page and All Bookings page.
+
+If a customer books a Resort room, the room inventory and Resort Admin dashboard must update.
+
+If a customer places a food order, it must appear in Restaurant Admin and Kitchen Management.
+
+If a customer reserves a restaurant table, the table reservation must appear in Restaurant Admin.
+
+When an admin changes a booking status, the updated status must appear in the customer booking history.
+
+Do not use unrelated static demo values for these linked views.
+
+---
+
+# 22. BOOKING AND PAYMENT RULES
+
+Implement simulated but logically consistent booking flows.
+
+Turf:
+
+- Prevent duplicate slot bookings.
+- Prevent booking blocked slots.
+- Release eligible cancelled slots.
+
+Resort:
+
+- Prevent overlapping room bookings.
+- Calculate nights correctly.
+- Update room availability.
+- Support multiple room reservations.
+
+Restaurant:
+
+- Prevent duplicate table reservations for overlapping times.
+- Validate cart quantity.
+- Validate item availability.
+- Calculate taxes and delivery charges.
+- Support all three fulfilment methods.
+
+Payments:
+
+- Simulate success and failure.
+- Update payment status.
+- Generate transaction IDs.
+- Connect payments to bookings.
+
+Display confirmation screens after successful operations.
+
+---
+
+# 23. RESPONSIVE DESIGN
+
+Desktop:
+
+- Sidebar admin layout.
+- Spacious customer landing pages.
+- Professional data tables.
+
+Tablet:
+
+- Responsive grids.
+- Collapsible navigation.
+- Adapted booking forms.
+
+Mobile:
+
+- Mobile-friendly navigation.
+- Compact cards.
+- Easy-to-use booking controls.
+- Mobile booking calendar.
+- Responsive cart and checkout.
+- Mobile admin drawer.
+
+Do not simply shrink the desktop layout.
+
+Design mobile layouts intentionally.
+
+---
+
+# 24. QUALITY REQUIREMENTS
+
+The final prototype must feel like a real commercial product.
+
+Prioritize:
+
+1. Visual quality
+2. Clean UX
+3. Complete functionality
+4. Consistent design system
+5. Correct booking logic
+6. Connected customer and admin data
+7. Responsive layouts
+8. Reusable code
+
+Avoid:
+
+- Placeholder pages
+- Empty dashboard sections
+- Dead buttons
+- Fake navigation
+- Broken routes
+- Inconsistent data
+- Unnecessary text
+- Excessive decorative cards
+- Overcomplicated UI
+
+Use realistic images for the turf, resort rooms, restaurant, and food.
+
+Create attractive empty states, loading states, confirmation modals, and validation messages.
+
+---
+
+# 25. FINAL IMPLEMENTATION INSTRUCTIONS
+
+Build the complete application, not just the homepage.
+
+Recommended implementation order:
+
+1. Set up the project and design system.
+2. Create shared components and navigation.
+3. Build the customer website.
+4. Implement Turf booking.
+5. Implement Resort booking.
+6. Implement Restaurant food ordering.
+7. Implement Restaurant table reservation.
+8. Build the unified admin dashboard.
+9. Build individual service dashboards.
+10. Connect all customer and admin data.
+11. Implement LocalStorage persistence.
+12. Test all workflows.
+13. Optimize desktop and mobile UI.
+
+Start implementing the application immediately.
+
+Do not respond with only a development plan or explanation.
+
+Do not ask me to manually build individual pages.
+
+Generate the complete working prototype with all required pages, interactions, realistic sample data, and a consistent premium UI.
+
+The final result must be a polished, functional, client-ready prototype demonstrating how one business can operate Turf Booking, Resort Room Booking, and Restaurant Management through one unified platform and a single admin dashboard.
